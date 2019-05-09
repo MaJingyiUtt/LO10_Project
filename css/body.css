@@ -1,0 +1,15 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 2018-6-14, 21:33:50
+    Author     : majingyi
+*/
+
+        body {
+            padding-top: 60px; 
+            /* 60px to make the container go all the way to the bottom of the topbar */
+            padding-left: 30px;
+        }

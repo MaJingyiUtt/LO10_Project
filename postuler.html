@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Postuler</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="google-signin-scope" content="profile email">
+        <meta name="google-signin-client_id" content="694371772072-8j04m95q9a5cnstnm1i27r2emr02ff80.apps.googleusercontent.com">
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="js/login.js"></script>
+    </head>
+    <body>      
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">LO10 Projet</a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li><a href="user.html">Mon compte</a></li>
+                    <li class="active"><a href="postuler.html">Postuler</a></li>
+                    <li><a href="chercher.html">Chercher</a></li>
+                </ul>
+                <div id="signin" style="float:right;" class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+                <button id="signout" style="float:right" onclick="logOut();" class="btn btn-success">Sign Out</button>
+            </div>
+        </nav>                     
+    </body>
+
+</html>

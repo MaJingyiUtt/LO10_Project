@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Mon Compte</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="google-signin-scope" content="profile email">
+        <meta name="google-signin-client_id" content="694371772072-8j04m95q9a5cnstnm1i27r2emr02ff80.apps.googleusercontent.com">
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+        <script src="js/user.js"></script>
+    </head>
+    <body>      
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">LO10 Projet</a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="user.html">Mon compte</a></li>
+                    <li><a href="postuler.html">Postuler</a></li>
+                    <li><a href="chercher.html">Chercher</a></li>
+                </ul>
+                <div id="signin" style="float:right;" class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+                <button id="signout" style="float:right" onclick="logOut();" class="btn btn-success">Sign Out</button>
+            </div>
+        </nav>  
+
+        <div class="container-fluid">
+            <div class="row row-no-gutters">
+                <div class="col-sm-3" ></div>
+                <div id='monProfile' class="col-sm-6" style="background-color:LightGray;">
+                    <center> 
+                        <h3>Mon profile</h3>
+                        <div>
+                            <label>Nom : </label><p id='nom'></p>
+                            <label>Prénom : </label><p id='prenom'></p> 
+                            <label>Email : </label><p id='email'></p>
+                            <label>Sexe : </label><p id='sexe'></p>
+                            <label>Adresse : </label><p id='adresse'></p>
+                            <label>Ville : </label><p id='ville'></p>
+                            </div>
+                        <a class="btn btn-primary" onclick='modifier();'>Modifer</a>
+                        <br>
+                    </center>
+                </div>
+                 <div id='modifierProfile' class="col-sm-6" style="background-color:LightGray;display: none">
+                    <center> 
+                        <h3>Modifier mon profile</h3>
+                        <div>
+                            <label>Nom:</label><p><input type="text" id='inputnom' disabled></p>
+                            <label>Prénom : </label><p><input type="text" id='inputprenom' disabled></p>
+                            <label>Email : </label><p><input type="text" id='inputemail' disabled></p>
+                            <label>Sexe : </label><p><input type="text" id='inputsexe'></p>
+                            <label>Adresse : </label><p><input type="text" id='inputadresse'></p>
+                            <label>Ville : </label><p><input type="text" id='inputville'></p>
+                            </div>
+                        <a class="btn btn-primary" onclick='enregisterP();'>Enregistrer</a>
+                        <br>
+                    </center>
+                </div>
+                
+                <div class="col-sm-3"></div>
+            </div>
+            <br>
+
+            <div class="row row-no-gutters">
+                <div class="col-sm-3" ></div>
+                <div class="col-sm-3" style="background-color:lavenderblush;"><center><h3>Postuler </h3></center>
+                    <center><a class="btn btn-primary" href="postuler.html">C'est parti &raquo;</a></center></div>
+                <div class="col-sm-3" style="background-color:lavender;"><center><h3>Rechercher</h3></center>
+                    <center><a class="btn btn-info" href="chercher.html">C'est parti &raquo;</a></center></div>
+                <div class="col-sm-3"></div>
+            </div>
+            <br>
+
+        </div>
+
+
+
+
+    </body>
+
+</html>

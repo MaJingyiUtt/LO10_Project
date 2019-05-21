@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>First Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id"
+        content="694371772072-8j04m95q9a5cnstnm1i27r2emr02ff80.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+</head>
+
+<body>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item active" aria-current="page">First Login</li>
+        </ol>
+    </nav>
+    <form>
+        <div class="form-group">
+            <label for="inputSurname">Surname</label>
+            <input type="surname" class="form-control" id="inputSurname" aria-describedby="surnameHelp"
+                placeholder="Enter your surname">
+        </div>
+        <div class="form-group">
+            <label for="inputFirstname">Firstname</label>
+            <input type="firstname" class="form-control" id="inputFirstname" aria-describedby="firstnameHelp"
+                placeholder="Enter your firstname">
+        </div>
+        <div class="form-group">
+            <label for="inputEmail">Email address</label>
+            <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp"
+                placeholder="Enter email">
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        </div>
+        <div class="form-group">
+            <label for="inputAddress">Adresse</label>
+            <input type="address" class="form-control" id="inputAddress" aria-describedby="addressHelp"
+                placeholder="Enter your address">
+        </div>
+        <div class="form-group">
+            <label for="inputTelephone">Telephone</label>
+            <input type="telephone" class="form-control" id="inputTelephone" aria-describedby="telephoneHelp"
+                placeholder="Enter your telephone">
+        </div>
+        <div class="form-group">
+            <div>
+                <span>Upload Your Photo</span>
+            </div>
+            <div>
+                <input type="file">
+                <label>Choose file</label>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</body>
+
+</html>

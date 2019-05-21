@@ -9,11 +9,11 @@ class Database {
         this.database = 'lo10'
         this.port = 3306
         this.connection = mysql.createConnection({
-            host,
-            user,
-            password,
-            database,
-            port
+            host: this.host,
+            user: this.user,
+            password: this.password,
+            database: this.database,
+            port: this.port
         })
     }
     //connect to the database
@@ -38,13 +38,14 @@ class Database {
     }
     /**
      * Query of SELECT for searching information from the table
-     *
+     * sql form like: 'where id=6;'
      * @param {String} table
+     * @param {String} columns
      * @param {String} sql
      * @memberof Database
      */
-    select(table, sql) {
-        this.connection.query('SELECT ' + sql + ' FROM ' + table, function (error, results, _fields) {
+    select(table, columns, sql) {
+        this.connection.query('SELECT ' + columns + ' FROM ' + table + sql, function (error, results, _fields) {
             if (error) console.error(error)
             else {
                 results.forEach(row => {
@@ -76,7 +77,7 @@ class Database {
     delete(table, sql) {
         connection.query("DELETE From" + table + sql)
     }
-    
+
     //Disconnect
     disconnect() {
         connection.end(function (error) {
@@ -85,3 +86,4 @@ class Database {
         })
     }
 }
+module.exports = Database

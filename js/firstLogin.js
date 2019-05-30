@@ -56,7 +56,6 @@ function submitF() {
             userId: userId,
             nom: nom,
             prenom: prenom,
-            ville: ville,
             adresse:adresse,
             email:email,
             portable: tel,

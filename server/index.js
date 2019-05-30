@@ -12,6 +12,6 @@ app.all('*', function(req, res, next) {
 
 
 app.use('/', indexRouter)
-app.use('/users', firstloginRouter)
+app.use('/firstlogin', firstloginRouter)
 
 app.listen(3000)

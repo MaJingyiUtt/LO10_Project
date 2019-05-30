@@ -66,7 +66,7 @@ function submitF() {
         },
         dataType: "json",
         success: function (data) {
-            $("#test").text("data:" + data);
+            console.log("Response:"+data);
         }
     });
 }

@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <script src="js/main.js"></script>
+    <script src="js/firstLogin.js"></script>
 </head>
 
 <body>
@@ -31,8 +31,9 @@
                 <button id="signout" style="float:right" onclick="logOut();" class="btn btn-success">Sign Out</button>
             </div>
     </nav>
-    <form>
+    <form id="firstForm">
         <div style="background-color:#eeeeee; padding:40px;margin-bottom:30px "> 
+
             <div class="form-group">
                 <label for="inputSurname">NOM</label>
                 <input type="surname" class="form-control" id="inputSurname" aria-describedby="surnameHelp"
@@ -43,6 +44,18 @@
                 <input type="firstname" class="form-control" id="inputFirstname" aria-describedby="firstnameHelp"
                     placeholder="Enter your firstname">
             </div>
+            <div class="form-check">
+                    <label for="inputRole">ROLE</label>
+                    <input  style="margin-left: 40px" class="form-check-input" type="radio" name="radiorole" id="radioNounou" value="n" onchange="imageAttention();" checked> Nounou
+                    <input  style="margin-left: 40px" class="form-check-input" type="radio" name="radiorole" id="radioParent" value="p" onchange="noImageAttention();">Parent
+                    <br>
+                  </div>
+                  <div class="form-check">
+                        <label for="inputSexe">SEXE</label>
+                        <input  style="margin-left: 40px" class="form-check-input" type="radio" name="radiosexe" id="radioHomme" value="h" checked> Homme
+                        <input  style="margin-left: 40px" class="form-check-input" type="radio" name="radiosexe" id="radioFemme" value="f">Femme
+                        <br>
+                      </div>    
             <div class="form-group">
                 <label for="inputEmail">EMAIL</label>
                 <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp"
@@ -56,18 +69,19 @@
             </div>
             <div class="form-group">
                 <label for="inputTelephone">TÉLÉPHONE</label>
-                <input type="telephone" class="form-control" id="inputTelephone" aria-describedby="telephoneHelp"
+                <input type="tel" class="form-control" id="inputTelephone" aria-describedby="telephoneHelp"
                     placeholder="Enter your telephone">
             </div>
             <div class="form-group">
                 <div>
                     <label>UPLOADEZ VOTRE IMAGE</label>
                 </div>
+                <small id="attention" class="form-text ">Attention, votre image devra être une photo de vous même. </small>
                 <div>
-                    <input type="file">
+                    <input type="file" id="inputImage">
                 </div>
             </div>
-            <button type="submit" class="btn btn-success">Submit</button>
+            <button type="submit" class="btn btn-success" onclick="submitF()">Submit</button>
         </div>
     </form>
 </body>

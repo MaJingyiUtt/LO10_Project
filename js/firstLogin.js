@@ -34,26 +34,18 @@ function imageAttention(){
 
 function noImageAttention(){
     document.getElementById("attention").style.display = "none";
-    submitF();
 }
 
 function submitF(){
     console.log("submitForm");
     var form = document.getElementById("firstForm");
     var nom = form.inputSurname.value;
-        console.log("nom = "+nom);
     var prenom = form.inputFirstname.value;
-       console.log(prenom);
     var role = form.radiorole.value;
-    console.log(role);
     var sexe = form.radiosexe.value;
-    console.log(sexe);
     var email = form.inputEmail.value;
-    console.log(email);
     var adresse = form.inputAddress.value;
-     console.log(adresse);
     var tel = form.inputTelephone.value; 
-    console.log(tel);
     var image = form.inputImage.value;
-    console.log(image);
+    alert(nom+prenom+role+sexe+email+adresse+tel+image);
 }

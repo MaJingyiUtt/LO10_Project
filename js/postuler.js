@@ -20,3 +20,13 @@ function logOut() {
     });
     window.location.href = "index.html";
 }
+
+function checkLogin(){
+    var b=true;
+    if(!gapi.auth2.getAuthInstance().isSignedIn.get()){
+        alert("Veuillez connecter sur votre compte Google ! ");
+        window.location.href = "index.html";
+        b=false;
+    }
+    return b;
+}

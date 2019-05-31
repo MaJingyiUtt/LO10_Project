@@ -3,6 +3,7 @@ var userName;
 var userGivenName;
 var userFamilyName;
 var userEmail;
+
 function onSignIn(googleUser) {
     var profile = googleUser.getBasicProfile();
     userId = profile.getId();
@@ -22,6 +23,16 @@ function logOut() {
     window.location.href = "index.html";
 }
 
+function checkLogin(){
+    var b=true;
+    if(!gapi.auth2.getAuthInstance().isSignedIn.get()){
+        alert("Veuillez connecter sur votre compte Google ! ");
+        window.location.href = "index.html";
+        b=false;
+    }
+    return b;
+}
+
 function initForm() {
     document.getElementById("inputSurname").value = userFamilyName;
     document.getElementById("inputFirstname").value = userGivenName;
@@ -37,8 +48,8 @@ function noImageAttention() {
 }
 
 function submitF() {
-    console.log("submitForm");
-    var form = document.getElementById("firstForm");
+    if(checkLogin()){
+        var form = document.getElementById("firstForm");
     var nom = form.inputSurname.value;
     var prenom = form.inputFirstname.value;
     var role = form.radiorole.value;
@@ -69,4 +80,7 @@ function submitF() {
         }
     });
     alert("Votre profile a bien été remis. Vous pouvez postuler une annonce après votre profile soit validé par notre système. ");
+    window.location.href = "user.html";
+    }
+    
 }

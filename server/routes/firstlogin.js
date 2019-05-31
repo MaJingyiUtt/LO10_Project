@@ -10,11 +10,12 @@ const table = "login"
 // @todo 此处应连数据库 把数据存进去 然后开始执行verification
 router.post('/', function (req, res) {
     console.info("request received")
+    const data = req.body
     console.info(req.body)
 
-    //connect to db
+    //connect to db and insert information
     db.connect()
-    db.insert("")
+    db.insert(table, data)
     res.send({ "message": "post successfully" })
 })
 

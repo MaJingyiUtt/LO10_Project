@@ -1,0 +1,23 @@
+{
+  "name": "lo10_project",
+  "version": "1.0.0",
+  "main": "database.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BaiBlanc/LO10_Project.git"
+  },
+  "author": "bai fang ma",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BaiBlanc/LO10_Project/issues"
+  },
+  "homepage": "https://github.com/BaiBlanc/LO10_Project#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {},
+  "description": ""
+}

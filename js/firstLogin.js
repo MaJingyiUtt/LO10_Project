@@ -57,12 +57,25 @@ function showPreview(fileId, imgId) {
         url = window.URL.createObjectURL(file.files[0]);
     }
     document.getElementById(imgId).src = url;
-    savePhoto();
 }
 
-function savePhoto(){
-    var image = document.getElementById("firstForm").inputImage;
-    console.log(image);
+function getPhoto(){
+ //   https://blog.csdn.net/fd214333890/article/details/71250488
+    var file = document.getElementById("firstForm").inputImage.files[0];
+    //  var file = $("#imgForm").find("input")[0].files[0];
+      //创建读取文件的对象
+      var reader = new FileReader();
+      //创建文件读取相关的变量
+      var imgFile;
+      //为文件读取成功设置事件
+      reader.onload=function(e) {
+          imgFile = e.target.result;
+          console.log(imgFile);
+          imgFile=imgFile.split(",")[1];   //去掉开头的data:image/jpeg;base64,
+          console.log(imgFile);// TODO : 要存的 
+      };
+      //正式读取文件
+      reader.readAsDataURL(file);
 }
 
 

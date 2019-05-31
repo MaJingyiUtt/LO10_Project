@@ -8,6 +8,10 @@ class Database {
         this.password = '12345678'
         this.database = 'lo10'
         this.port = 3306
+        
+    }
+    //connect to the database
+    connect() {
         this.connection = mysql.createConnection({
             host: this.host,
             user: this.user,
@@ -15,9 +19,6 @@ class Database {
             database: this.database,
             port: this.port
         })
-    }
-    //connect to the database
-    connect() {
         this.connection.connect(function (error) {
             if (error) console.error(error)
             else console.info("Connected")

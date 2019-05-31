@@ -78,7 +78,8 @@
                 </div>
                 <small id="attention" class="form-text ">Attention, votre image devra être une photo de vous même. </small>
                 <div>
-                    <input type="file" id="inputImage">
+                    <input type="file" id="inputImage" onchange="showPreview(this.id, 'portrait')"/>
+                    <img src="" id="portrait" style="width: 200px; display: block;" />        
                 </div>
             </div>
         <center>

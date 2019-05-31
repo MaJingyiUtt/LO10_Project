@@ -16,6 +16,7 @@ router.post('/', function (req, res) {
     //connect to db and insert information
     db.connect()
     db.insert(table, data)
+    db.disconnect()
     res.send({ "message": "post successfully" })
 })
 

@@ -64,7 +64,7 @@ class Database {
      * @memberof Database
      */
     update(table, sql) {
-        connection.query("UPDATE " + table + sql)
+        this.connection.query("UPDATE " + table + sql)
     }
 
     /**
@@ -75,12 +75,12 @@ class Database {
      * @memberof Database
      */
     delete(table, sql) {
-        connection.query("DELETE From" + table + sql)
+        this.connection.query("DELETE From" + table + sql)
     }
 
     //Disconnect
     disconnect() {
-        connection.end(function (error) {
+        this.connection.end(function (error) {
             if (error) console.error(error)
             else console.info("Disconnected")
         })

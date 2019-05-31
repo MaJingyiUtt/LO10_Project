@@ -46,6 +46,25 @@ function imageAttention() {
 function noImageAttention() {
     document.getElementById("attention").style.display = "none";
 }
+
+function showPreview(fileId, imgId) {
+    var file = document.getElementById(fileId);
+    var ua = navigator.userAgent.toLowerCase();
+    var url = '';
+    if (/msie/.test(ua)) {
+        url = file.value;
+    } else {
+        url = window.URL.createObjectURL(file.files[0]);
+    }
+    document.getElementById(imgId).src = url;
+    savePhoto();
+}
+
+function savePhoto(){
+    
+}
+
+
 /**
  * Click button "submit" and call this function 
  *
@@ -61,7 +80,6 @@ function submitF() {
     var adresse = form.inputAddress.value;
     var tel = form.inputTelephone.value;
     var image = form.inputImage.value;
-    alert(nom + prenom + role + sexe + email + adresse + tel + image);
 
     //jQuery ajax
     // Parameters: 

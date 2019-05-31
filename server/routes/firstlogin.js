@@ -3,8 +3,10 @@ const router = express.Router()
 
 router.post('/', function(req, res){
     console.info("request received")
-    console.log(req.body);
-    res.send(" post successfully!");
+    console.info(req.body)
+    
+    res.send(" post successfully!")
+    console.info(JSON.stringify(req.body))
 })
 
 module.exports = router

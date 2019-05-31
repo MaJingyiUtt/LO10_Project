@@ -51,21 +51,21 @@ function submitF() {
     $.ajax({
         url: "http://18.222.63.99:3000/firstlogin",
         header: "Access-Control-Allow-Origin: *",
-        type:"POST",
+        type: "POST",
         data: {
-            userId: userId,
-            nom: nom,
-            prenom: prenom,
-            adresse:adresse,
-            email:email,
-            portable: tel,
-            role:role,
-            sexe:sexe,
-            photo:image
+            "userId": userId,
+            "nom": nom,
+            "prenom": prenom,
+            "adresse": adresse,
+            "email": email,
+            "portable": tel,
+            "role": role,
+            "sexe": sexe,
+            "photo": image
         },
         dataType: "json",
         success: function (data) {
-            console.log("Response:"+data);
+            console.log("Response:" + data);
         }
     });
 }

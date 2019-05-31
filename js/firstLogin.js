@@ -47,7 +47,7 @@ function submitF() {
     var adresse = form.inputAddress.value;
     var tel = form.inputTelephone.value;
     var image = form.inputImage.value;
-    alert(nom + prenom + role + sexe + email + adresse + tel + image);
+    
     $.ajax({
         url: "http://18.222.63.99:3000/firstlogin",
         header: "Access-Control-Allow-Origin: *",
@@ -68,4 +68,5 @@ function submitF() {
             console.log("Response:" + data);
         }
     });
+    alert("Votre profile a bien été remis. Vous pouvez postuler une annonce après votre profile soit validé par notre système. ");
 }

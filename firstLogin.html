@@ -32,9 +32,8 @@
                 <button id="signout" style="float:right" onclick="logOut();" class="btn btn-success">Sign Out</button>
             </div>
     </nav>
+    <div style="background-color:#eeeeee; padding:40px;margin-bottom:30px "> 
     <form id="firstForm">
-        <div style="background-color:#eeeeee; padding:40px;margin-bottom:30px "> 
-
             <div class="form-group">
                 <label for="inputSurname">NOM</label>
                 <input type="surname" class="form-control" id="inputSurname" aria-describedby="surnameHelp"
@@ -82,9 +81,10 @@
                     <input type="file" id="inputImage">
                 </div>
             </div>
-            <button type="submit" class="btn btn-success" onclick="submitF()">Submit</button>
-        </div>
+        <center>
+    <button id="valider" class="btn btn-success"  type="button" onclick="submitF();" >Valider</button>
+</center>
     </form>
+</div>
 </body>
-
 </html>

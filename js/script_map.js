@@ -42,7 +42,7 @@ function checkLogin(){
 
 
 function createMap () {
-  if(!locations){
+    geocoder = new google.maps.Geocoder();
     var options = {
       center: { lat: 48.297023, lng: 4.073805 },
       zoom: 10
@@ -85,61 +85,45 @@ function createMap () {
     }); 
       map.fitBounds(bounds);
     });
-  }
-
-  else {
-    var options = {
-      center: placeSearch,
-      zoom: 12
-    };
-
-    map = new google.maps.Map(document.getElementById('map'), options);
-      place = new google.maps.Marker({
-        position: placeSearch,
-        map: map,
-        icon: {
-          url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
-        }
-      });
-
-      for (i = 0; i < locations.length; i++) {
-        marker = new google.maps.Marker({
-          position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-          map: map,
-          title:locations[i][0]
-        });
-        content=locations[i][0];
-        var infowindow = new google.maps.InfoWindow();
-        google.maps.event.addListener(marker,'click', (function(marker,content,infowindow){ 
-          return function() {
-            infowindow.setContent(content);
-            infowindow.open(map,marker);
-          };
-      })(marker,content,infowindow)); 
-      }
-  }
 }
 
 function submitFormData(){
-  // var type = form.type.value;
   // var content = form.content.value;
   // var search = form.search.value;
   // var sexe = form.sexe.value;
-  // var prix_min = form.prix_min.value;
   // var prix_max = form.prix_max.value;
+    
+    address = [
+      ['Julie', "UTT, Troyes, France",1],
+      ['Tom', "3 Rue Generale de gaulle,10000 Troyes,France",2]
+    ];
 
-  locations = [
-    ['Julie', 48.269398, 4.066733, 1],
-    ['Tom', 48.300058, 4.073061, 2]
-  ];
-
+    for (i = 0; i < address.length; i++) {
+      currAddress = address[i][1];
+      geocoder.geocode( { 'address': currAddress}, function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+          marker = new google.maps.Marker({
+            position: results[0].geometry.location,
+            map: map,
+            title:results[0].formatted_address
+          });
+          content=results[0].formatted_address;
+          var infowindow = new google.maps.InfoWindow();
+          google.maps.event.addListener(marker,'click', (function(marker,content,infowindow){ 
+            return function() {
+              infowindow.setContent(content);
+              infowindow.open(map,marker);
+            };
+        })(marker,content,infowindow)); 
+        }
+      })
+    };
 }
 
 function subForm(){
   checkLogin();
   event.preventDefault();  // 取消按键的原始提交行为
   submitFormData();  //启动监听提交按钮
-  createMap();
 }
 
 

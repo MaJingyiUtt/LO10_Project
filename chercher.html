@@ -17,10 +17,9 @@
         <!-- Bootstrap scripts. -->
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-                                            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-                                            <!-- Google Maps scripts. -->
-                                            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8DZqexyeoM_imWTzM1fmNL2J5xtCYm60&callback=createMap&libraries=places" async defer></script>
-                                            
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <!-- Google Maps scripts. -->
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8DZqexyeoM_imWTzM1fmNL2J5xtCYm60&callback=createMap&libraries=places" async defer></script>
     </head>
     <body>      
         <nav class="navbar navbar-inverse">
@@ -41,89 +40,54 @@
             <div style="background-color:#eeeeee; padding:40px;margin-bottom:30px "> 
                 <h2>Rechercher</h2>
                 <br/>
+                <div class="row" style="margin-bottom:10px">
+                <div class="col-sm-2" >
+                    <select name="sexe">
+                        <option>Femme</option>
+                        <option>Homme</option>
+                        </select>
+                </div>
+                <div class="col-sm-2">
+                    <select name="prix_max">
+                        <option>Prix max</option>
+                        <option>5</option>
+                        <option>10</option>
+                        <option>15</option>
+                        <option>20</option>
+                        <option>25</option>
+                    </select>   
+                </div>
+                </div>
                 <div class="row">
-                <div class="col-sm-10"> 
-                    <div class="col-sm-2" >
-                        <label for="nounou"><input type="radio" id="nounou" name="type" value="nounou">   Nounou<label>
-                                </div>
-                                <div class="col-sm-2" >
-                                    <label for="parent"><input type="radio" id="parent" name="type" value="parent">   Parent<label>
-                                            </div>
-                                            </div>
-                                            <br>
-                                            </div>
-                                            <div class="row" style="margin-bottom:10px">
-                                                <div class="col-sm-2" >
-                                                    <select name="sexe">
-                                                        <option>Femme</option>
-                                                        <option>Homme</option>
-                                                    </select>
-                                                </div>
-                                                <div class="col-sm-2">
-                                                    <select name="prix_min">
-                                                        <option>Prix min</option>
-                                                        <option>0</option>
-                                                        <option>5</option>
-                                                        <option>10</option>
-                                                        <option>15</option>
-                                                        <option>20</option>
-                                                    </select>   
-                                                </div>
-                                                <div class="col-sm-2">
-                                                    <select name="prix_max">
-                                                        <option>Prix max</option>
-                                                        <option>5</option>
-                                                        <option>10</option>
-                                                        <option>15</option>
-                                                        <option>20</option>
-                                                        <option>25</option>
-                                                    </select>   
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-3">
-                                                    <input class="form-control" id="content" type="text" placeholder="Que recherchez-vous ?" />
-                                                </div>
-                                                <div class="col-sm-3">
-                                                    <input class="form-control" id="search" type="text" placeholder="Où ?" />
-                                                </div>
-                                                <div class="col-sm-2">
-                                                    <input type="submit" value="Rechercher" class="btn btn-success" onclick="subForm()"/>
-                                                </div>
-                                            </div>
-                                            <br>
-
-                                            
-
-                                            </div> 
-                                            <!-- <div class="row mb-2">
-                                              <div class="col">
-                                                <input class="form-control" id="search" type="text" placeholder="Search..." />
-                                              </div>
-                                            </div> -->
-
-                                            <div class="row">
-                                                <div class="col-sm-8">
-                                                    <!-- <div class="hero-unit" id="heihei">
-                                                      <p>Hello</p>
-                                                      <p>xixi</p>
-                                                    </div> -->
-                                                    <div style="background-color:#eeeeee; padding:40px;margin-bottom:30px" >
-                                                        <div id="nom1"><b>Nom: </b>Julie</div>
-                                                        <div id="email1"><b>Email: </b>julie.666@gmail.com</div>
-                                                        <div id="adresse1"><b>Adresse: </b>UTT, Troyes, France</div>
-                                                    </div>
-                                                    <div style="background-color:#eeeeee; padding:40px;margin-bottom:30px">
-                                                        <div id="nom2"><b>Nom: </b>Tom</div>
-                                                        <div id="email2"><b>Email: </b>tom.666@gmail.com</div>
-                                                        <div id="adresse2"><b>Adresse: </b>3 Rue Generale de gaulle, 10000 Troyes, France</div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-4">
-                                                    <div id="map"></div>
-                                                </div>
-
-                                            </div>
-                                            </form>
-                                            </body>
-                                            </html>
+                    <div class="col-sm-3">
+                        <input class="form-control" id="content" type="text" placeholder="Que recherchez-vous ?" />
+                    </div>
+                    <div class="col-sm-3">
+                        <input class="form-control" id="search" type="text" placeholder="Où ?" />
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="submit" value="Rechercher" class="btn btn-success" onclick="subForm()"/>
+                    </div>
+                </div>
+                <br>
+            </div> 
+            <div class="row">
+                <div class="col-sm-8">
+                    <div style="background-color:#eeeeee; padding:40px;margin-bottom:30px" >
+                        <div id="nom1"><b>Nom: </b>Julie</div>
+                        <div id="email1"><b>Email: </b>julie.666@gmail.com</div>
+                        <div id="adresse1"><b>Adresse: </b>UTT, Troyes, France</div>
+                    </div>
+                    <div style="background-color:#eeeeee; padding:40px;margin-bottom:30px">
+                        <div id="nom2"><b>Nom: </b>Tom</div>
+                        <div id="email2"><b>Email: </b>tom.666@gmail.com</div>
+                        <div id="adresse2"><b>Adresse: </b>3 Rue Generale de gaulle, 10000 Troyes, France</div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div id="map"></div>
+                </div>
+            </div>
+        </form>
+    </body>
+</html>

@@ -7,6 +7,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 const indexRouter = require('./routes/index')
 const firstloginRouter = require('./routes/firstlogin')
+const postulerRouter = require('./routes/postuler')
 
 app.all('*', function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -18,5 +19,6 @@ app.all('*', function(req, res, next) {
 
 app.use('/', indexRouter)
 app.use('/firstlogin', firstloginRouter)
+app.use('/postuler', postulerRouter)
 
 app.listen(3000)

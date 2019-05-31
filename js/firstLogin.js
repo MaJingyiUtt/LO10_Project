@@ -61,7 +61,8 @@ function showPreview(fileId, imgId) {
 }
 
 function savePhoto(){
-    
+    var image = document.getElementById("firstForm").inputImage;
+    console.log(image);
 }
 
 

@@ -145,5 +145,5 @@ function submitF() {
                 window.location.href = "user.html";
             }
         });
-
+    }}
 

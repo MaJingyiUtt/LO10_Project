@@ -21,7 +21,7 @@ function onSignIn(googleUser) {
       dataType: "json",
       success: function (data) {
           console.log("Response:" + data);
+          window.location.href = "user.html";
       }
   });
-      window.location.href = "user.html";
 }

@@ -15,13 +15,13 @@ function onSignIn(googleUser) {
     var id_token = googleUser.getAuthResponse().id_token;
     console.log("ID Token: " + id_token);
     $.ajax({
-      url: "http://18.222.63.99:3000/"+userId,
+      url: "http://18.222.63.99:3000/userId/"+userId,
       header: "Access-Control-Allow-Origin: *",
       type: "GET",
       dataType: "json",
       success: function (data) {
           console.log("Response:" + data);
+          window.location.href = "user.html";
       }
   });
-      window.location.href = "user.html";
 }

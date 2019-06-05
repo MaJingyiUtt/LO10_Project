@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router()
+const fs = require("fs")
 const Database = require("../utils/database")
 
 const db = new Database()
@@ -11,8 +12,18 @@ const table = "login"
 router.post('/', function (req, res) {
     console.info("request received")
     const data = req.body
+    const photo = data.photo
     console.info(req.body)
-
+    //Write the stream of photo into a file
+    const path = "~/photos/"+data.userId+".jpg"
+    data.photo = path
+    fs.writeFile(path, photo, (err) => {
+        if (err) {
+          console.error(err)
+          
+        }
+      })
+      
     //connect to db and insert information
     db.connect()
     db.insert(table, data)

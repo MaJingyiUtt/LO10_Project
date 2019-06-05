@@ -8,7 +8,7 @@ const table = "detail"
 router.get('/', function (req, res) {
   res.send('hello, express')
 })
-router.get('/:userId', function (req, res) {
+router.get('/userId/:userId', function (req, res) {
   
   res.send({ "message": "get successfully" })
   console.log(req.params.userId)

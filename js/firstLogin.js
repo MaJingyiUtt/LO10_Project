@@ -1,3 +1,6 @@
+document.write("<script type='text/javascript' src='https://smtpjs.com/v3/smtp.js'></script>"); 
+document.write("<script type='text/javascript' src='md5.js'></script>"); 
+
 var userId;
 var userName;
 var userGivenName;
@@ -94,6 +97,8 @@ function submitF() {
     var adresse = form.inputAddress.value;
     var tel = form.inputTelephone.value;
     var image = form.inputImage.value;
+    var token = hex_md5(userId);
+    var content = 'Bonjour, pour vérifier votre mail, veuillez cliquer ce lien : http://18.222.63.99:3000/verify/'+token+"/"+userId;
 
     //jQuery ajax
     // Parameters: 
@@ -118,7 +123,8 @@ function submitF() {
             "portable": tel,
             "role": role,
             "sexe": sexe,
-            "photo": image
+            "photo": image,
+            "token":token
         },
         dataType: "json",
         success: function (data) {
@@ -127,6 +133,20 @@ function submitF() {
     });
     alert("Votre profile a bien été remis. Vous pouvez postuler une annonce après votre profile soit validé par notre système. ");
     window.location.href = "user.html";
+
+    //send a email with a link
+    Email.send({
+        Host : "smtp.elasticemail.com",
+        Username : "ranfang19@gmail.com",
+        Password : "7113902e-2358-48ee-874d-5c6991d9aa83",
+        To : email,
+        From : "ranfang19@gmail.com",
+        Subject : "Nounou",
+        Body : content
+    }).then(
+      message => alert(message)
+    );
+
     }
     
 }

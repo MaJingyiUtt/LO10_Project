@@ -72,7 +72,7 @@ function getPhoto(){
           imgFile = e.target.result;
           console.log(imgFile);
           imgFile=imgFile.split(",")[1];   //去掉开头的data:image/jpeg;base64,
-          console.log(imgFile);// TODO : 要存的 
+          
       };
       //正式读取文件
       reader.readAsDataURL(file);

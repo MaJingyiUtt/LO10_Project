@@ -16,4 +16,16 @@ router.get('/userId/:userId', function (req, res) {
   db.connect()
 
 })
+
+router.get('/verify/:token/:id', function (req, res) {
+  
+
+  
+  // req.params.token
+  // req.params.id
+
+
+
+})
+
 module.exports = router

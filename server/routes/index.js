@@ -15,10 +15,12 @@ router.get('/userId/:userId', function (req, res) {
   const table = "login"
   const sql = " WHERE userId = '"+userId+"'"
   db.connect()
-  const results = db.select(table,"*",sql)
+  db.select(table,"*",sql,function (results){
+    const isNew = results.length == 0
+    console.log(isNew)
+    res.send({"isNew": isNew})
+  })
   db.disconnect()
-
-  res.send({"new": results.length == 0})
 
 })
 

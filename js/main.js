@@ -20,8 +20,13 @@ function onSignIn(googleUser) {
       type: "GET",
       dataType: "json",
       success: function (data) {
-          console.log("Response:" + data);
-          window.location.href = "user.html";
+          console.log(data);
+          if(data.isNew){
+            window.location.href = "firstLogin.html";
+          }else{
+            window.location.href = "user.html";
+          }
+          
       }
   });
 }

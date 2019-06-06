@@ -11,9 +11,14 @@ router.get('/', function (req, res) {
 router.get('/userId/:userId', function (req, res) {
   
   res.send({ "message": "get successfully" })
-  console.log(req.params.userId)
-
+  const userId = req.params.userId
+  const table = "login"
+  const sql = " WHERE userId = '"+userId+"'"
   db.connect()
+  const results = db.select(table,"*",sql)
+  db.disconnect()
+
+  res.send({"new": results.length == 0})
 
 })
 

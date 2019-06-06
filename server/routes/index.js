@@ -9,8 +9,7 @@ router.get('/', function (req, res) {
   res.send('hello, express')
 })
 router.get('/userId/:userId', function (req, res) {
-  
-  res.send({ "message": "get successfully" })
+
   const userId = req.params.userId
   const table = "login"
   const sql = " WHERE userId = '"+userId+"'"

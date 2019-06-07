@@ -62,7 +62,7 @@ function showPreview(fileId, imgId) {
     document.getElementById(imgId).src = url;
 }
 
-function getPhoto() {
+function getPhoto(callback) {
     //   https://blog.csdn.net/fd214333890/article/details/71250488
     var file = document.getElementById("firstForm").inputImage.files[0];
     //  var file = $("#imgForm").find("input")[0].files[0];
@@ -73,9 +73,11 @@ function getPhoto() {
     //为文件读取成功设置事件
     reader.onload = function (e) {
         imgFile = e.target.result;
-        console.log(imgFile);
+        
+        
         imgFile = imgFile.split(",")[1];   //去掉开头的data:image/jpeg;base64,
-        return imgFile
+        console.log(imgFile);
+        callback(imgFile) 
     };
     //正式读取文件
     reader.readAsDataURL(file);
@@ -96,7 +98,10 @@ function submitF() {
         var email = form.inputEmail.value;
         var adresse = form.inputAddress.value;
         var tel = form.inputTelephone.value;
-        var image = getPhoto();
+        var image
+        getPhoto(function (imgFile){
+            image = imgFile
+        })
         var token = hex_md5(userId);
         var content = 'Bonjour, pour vérifier votre mail, veuillez cliquer ce lien : http://18.222.63.99:3000/verify/' + token + "/" + userId;
 

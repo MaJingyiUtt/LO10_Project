@@ -4,6 +4,7 @@ const rekognition = new AWS.Rekognition({ region: 'us-east-1' })
 
 const detectFace = function (path,callback){
     const image = fs.readFileSync(path)
+    console.log(image)
     const param = {
         Image: {
             //    No need to pass to Base64, 

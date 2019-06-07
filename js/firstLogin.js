@@ -98,10 +98,6 @@ function submitF() {
         var email = form.inputEmail.value;
         var adresse = form.inputAddress.value;
         var tel = form.inputTelephone.value;
-        var image
-        getPhoto(function (imgFile){
-            image = imgFile
-        })
         var token = hex_md5(userId);
         var content = 'Bonjour, pour vérifier votre mail, veuillez cliquer ce lien : http://18.222.63.99:3000/verify/' + token + "/" + userId;
 
@@ -115,40 +111,43 @@ function submitF() {
         // dataType：这是设置返回数据类型的 假如express那边 res返回的是字符串 此处就是text；否则是JSON
         // 需要和express部分相吻合 否则无法执行 success这个回调函数（callback）
         // success：成功接收到res后执行的函数
-        $.ajax({
-            url: "http://18.222.63.99:3000/firstlogin",
-            header: "Access-Control-Allow-Origin: *",
-            type: "POST",
-            data: {
-                "userId": userId,
-                "nom": nom,
-                "prenom": prenom,
-                "adresse": adresse,
-                "email": email,
-                "portable": tel,
-                "role": role,
-                "sexe": sexe,
-                "photo": image,
-                "token": token
-            },
-            dataType: "json",
-            success: function (data) {
-                console.log("Response:" + data);
-                //send a email with a link
-                Email.send({
-                    Host: "smtp.elasticemail.com",
-                    Username: "ranfang19@gmail.com",
-                    Password: "7113902e-2358-48ee-874d-5c6991d9aa83",
-                    To: email,
-                    From: "ranfang19@gmail.com",
-                    Subject: "Nounou",
-                    Body: content
-                }).then(
-                    message => alert(message)
-                );
-                alert("Votre profile a bien été remis. Vous pouvez postuler une annonce après votre profile soit validé par notre système. ");
-                window.location.href = "user.html";
-            }
-        });
+        getPhoto(function(image){
+            $.ajax({
+                url: "http://18.222.63.99:3000/firstlogin",
+                header: "Access-Control-Allow-Origin: *",
+                type: "POST",
+                data: {
+                    "userId": userId,
+                    "nom": nom,
+                    "prenom": prenom,
+                    "adresse": adresse,
+                    "email": email,
+                    "portable": tel,
+                    "role": role,
+                    "sexe": sexe,
+                    "photo": image,
+                    "token": token
+                },
+                dataType: "json",
+                success: function (data) {
+                    console.log("Response:" + data);
+                    //send a email with a link
+                    Email.send({
+                        Host: "smtp.elasticemail.com",
+                        Username: "ranfang19@gmail.com",
+                        Password: "7113902e-2358-48ee-874d-5c6991d9aa83",
+                        To: email,
+                        From: "ranfang19@gmail.com",
+                        Subject: "Nounou",
+                        Body: content
+                    }).then(
+                        message => alert(message)
+                    );
+                    alert("Votre profile a bien été remis. Vous pouvez postuler une annonce après votre profile soit validé par notre système. ");
+                    window.location.href = "user.html";
+                }
+            });
+        })
+        
     }}
 

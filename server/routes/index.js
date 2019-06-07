@@ -27,11 +27,11 @@ router.get('/userId/:userId', function (req, res) {
 router.get('/verify/:token/:id', function (req, res) {
   
 
-  
+  let isVerified=true
   // req.params.token
   // req.params.id
-  if(idVerified == false){
-
+  if(isVerified == false){
+    // todo 
   }else{
     const userId=  req.params.id
     const table = "login"

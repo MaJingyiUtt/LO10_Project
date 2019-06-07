@@ -48,8 +48,7 @@ class Database {
     select(table, columns, sql, callback) {
         this.connection.query('SELECT ' + columns + ' FROM ' + table +" "+ sql, function (error, results, _fields) {
             if (error) console.error(error)
-            else {
-                
+            else {          
                 callback(results)
             }
         })

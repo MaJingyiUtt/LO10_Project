@@ -11,7 +11,7 @@ router.get('/:userId', function (req, res) {
     db.connect()
     db.select(table,"*",sql,function (results){
       console.log(results[0]);
-      res.send({"nonouData": results[0]});
+      res.send({"nounouData": results[0]});
     })
     db.disconnect()
   

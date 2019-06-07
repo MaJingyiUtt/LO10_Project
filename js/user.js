@@ -26,6 +26,16 @@ function logOut() {
 }
 
 function monProfile() {
+    $.ajax({
+        url: "http://18.222.63.99:3000/nounous/"+userId,
+        header: "Access-Control-Allow-Origin: *",
+        type: "GET",
+        dataType: "json",
+        success: function (data) {
+            console.log(data.nounouData);
+            
+        }
+    });
     document.getElementById('nom').innerText = userFamilyName;
     document.getElementById('prenom').innerText = userGivenName;
     document.getElementById('email').innerText = userEmail;

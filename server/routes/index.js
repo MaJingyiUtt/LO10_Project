@@ -9,11 +9,17 @@ router.get('/', function (req, res) {
   res.send('hello, express')
 })
 router.get('/userId/:userId', function (req, res) {
-  
-  res.send({ "message": "get successfully" })
-  console.log(req.params.userId)
 
+  const userId = req.params.userId
+  const table = "login"
+  const sql = " WHERE userId = '"+userId+"'"
   db.connect()
+  db.select(table,"*",sql,function (results){
+    const isNew = results.length == 0
+    console.log(isNew)
+    res.send({"isNew": isNew})
+  })
+  db.disconnect()
 
 })
 

@@ -1,5 +1,5 @@
 document.write("<script type='text/javascript' src='https://smtpjs.com/v3/smtp.js'></script>");
-document.write("<script type='text/javascript' src='md5.js'></script>");
+document.write("<script type='text/javascript' src='js/md5.js'></script>");
 
 var userId;
 var userName;

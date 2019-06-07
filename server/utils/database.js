@@ -45,15 +45,12 @@ class Database {
      * @param {String} sql
      * @memberof Database
      */
-    select(table, columns, sql) {
-        this.connection.query('SELECT ' + columns + ' FROM ' + table + sql, function (error, results, _fields) {
+    select(table, columns, sql, callback) {
+        this.connection.query('SELECT ' + columns + ' FROM ' + table +" "+ sql, function (error, results, _fields) {
             if (error) console.error(error)
             else {
-                results.forEach(row => {
-                    //
-                    console.info(JSON.stringify(row))
-                    return
-                });
+                
+                callback(results)
             }
         })
     }

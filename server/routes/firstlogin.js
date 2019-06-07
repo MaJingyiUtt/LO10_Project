@@ -13,10 +13,11 @@ router.post('/', function (req, res) {
     console.info("request received")
     const data = req.body
     const photo = data.photo
-    console.info(req.body)
+    
     //Write the stream of photo into a file
     const path = "/home/ubuntu/photos/"+data.userId+".jpg"
     data.photo = path
+    console.info(req.body)
     fs.writeFile(path, photo, (err) => {
         if (err) {
           console.error(err)

@@ -123,31 +123,50 @@ function submitF() {
             "sexe": sexe,
             "token": token
         }
-        formData['photo'] = $('#inputImage')[0].files[0];
-        $.ajax({
-            url: "http://18.222.63.99:3000/firstlogin",
-            header: "Access-Control-Allow-Origin: *",
-            type: "POST",
-            data: formData,
-            dataType: "json",
-            success: function (data) {
-                console.log("Response:" + data);
-                //send a email with a link
-                Email.send({
-                    Host: "smtp.elasticemail.com",
-                    Username: "ranfang19@gmail.com",
-                    Password: "7113902e-2358-48ee-874d-5c6991d9aa83",
-                    To: email,
-                    From: "ranfang19@gmail.com",
-                    Subject: "Nounou",
-                    Body: content
-                }).then(
-                    message => alert(message)
-                );
-                alert("Votre profile a bien été remis. Vous pouvez postuler une annonce après votre profile soit validé par notre système. ");
-                window.location.href = "user.html";
-            }
-        });
+
+        //
+        var file = document.getElementById("firstForm").inputImage.files[0];
+        var reader = new FileReader();
+
+        var imgFile;
+
+        reader.onload = function (e) {
+            imgFile = e.target.result;
+
+
+            imgFile = imgFile.split(",")[1];   //去掉开头的data:image/jpeg;base64,
+            formData['photo']=atob(imgFile)
+
+            $.ajax({
+                url: "http://18.222.63.99:3000/firstlogin",
+                header: "Access-Control-Allow-Origin: *",
+                type: "POST",
+                data: formData,
+                dataType: "json",
+                success: function (data) {
+                    console.log("Response:" + data);
+                    //send a email with a link
+                    Email.send({
+                        Host: "smtp.elasticemail.com",
+                        Username: "ranfang19@gmail.com",
+                        Password: "7113902e-2358-48ee-874d-5c6991d9aa83",
+                        To: email,
+                        From: "ranfang19@gmail.com",
+                        Subject: "Nounou",
+                        Body: content
+                    }).then(
+                        message => alert(message)
+                    );
+                    alert("Votre profile a bien été remis. Vous pouvez postuler une annonce après votre profile soit validé par notre système. ");
+                    window.location.href = "user.html";
+                }
+            });
+        };
+        
+        reader.readAsDataURL(file);
+
+        //
+
 
 
     }

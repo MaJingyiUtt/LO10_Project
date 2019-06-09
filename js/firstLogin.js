@@ -1,5 +1,6 @@
 document.write("<script type='text/javascript' src='https://smtpjs.com/v3/smtp.js'></script>");
 document.write("<script type='text/javascript' src='js/md5.js'></script>");
+document.write("<script type='text/javascript' src='https://sdk.amazonaws.com/js/aws-sdk-2.471.0.min.js'></script>");
 
 var userId;
 var userName;
@@ -48,6 +49,7 @@ function imageAttention() {
 
 function noImageAttention() {
     document.getElementById("attention").style.display = "none";
+uploadToS3();
 }
 
 function showPreview(fileId, imgId) {
@@ -60,6 +62,27 @@ function showPreview(fileId, imgId) {
         url = window.URL.createObjectURL(file.files[0]);
     }
     document.getElementById(imgId).src = url;
+}
+
+function uploadToS3(){
+    var file = document.getElementById("firstForm").inputImage.files[0];
+    var credentials = {
+        accessKeyId: 'AKIAICQA6SYFKP34PXJA ',
+        secretAccessKey: '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'
+    };  //秘钥形式的登录上传
+    AWS.config.update(credentials);
+    AWS.config.region = 'us-west-1';   //设置区域
+     
+    // create bucket instance
+    var bucket = new AWS.S3({params: {Bucket: 'lo10images'}});  //选择桶
+        if (file) {
+            var params = {Key: file.name, ContentType: file.type, Body: file, 'Access-Control-Allow-Credentials': '*','ACL': 'public-read'}; //key可以设置为桶的相抵路径，Body为文件， ACL最好要设置
+            bucket.upload(params, function (err, data) {
+                console.log(err);  //打印出错误
+            });
+        } else {
+          console.log('Nothing to upload.');
+        }
 }
 
 function getPhoto(callback) {

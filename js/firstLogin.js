@@ -135,7 +135,6 @@ function submitF() {
 
 
             imgFile = imgFile.split(",")[1];   //去掉开头的data:image/jpeg;base64,
-            formData['photo']=atob(imgFile)
 
             $.ajax({
                 url: "http://18.222.63.99:3000/firstlogin",

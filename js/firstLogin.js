@@ -67,8 +67,8 @@ function showPreview(fileId, imgId) {
 function uploadToS3(){
     var file = document.getElementById("firstForm").inputImage.files[0];
     var credentials = {
-        accessKeyId: 'AKIAICQA6SYFKP34PXJA ',
-        secretAccessKey: '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'
+        accessKeyId: accessKeyId,
+        secretAccessKey: secreAccessKey
     };  //秘钥形式的登录上传
     AWS.config.update(credentials);
     AWS.config.region = 'us-west-1';   //设置区域

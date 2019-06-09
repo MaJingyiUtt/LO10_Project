@@ -34,8 +34,10 @@ function monProfile() {
         success: function (data) {
             console.log(data.nounouData);
             
+            
         }
     });
+
     document.getElementById('nom').innerText = userFamilyName;
     document.getElementById('prenom').innerText = userGivenName;
     document.getElementById('email').innerText = userEmail;

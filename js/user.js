@@ -57,8 +57,8 @@ document.getElementById('adresse').innerText = nounouData.adresse;
 document.getElementById('portable').innerText = nounouData.portable;
 setMessage(nounouData.verified);
 }
-function setMessage(verified){
-    if(verified){
+function setMessage(nounouData){
+    if(nounouData.verified){
         document.getElementById('message').innerText ="Votre profile a été validé. Vous pouvez postuler. " ;
     }else {
         if(nounouData.message.length==0){

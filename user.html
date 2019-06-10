@@ -33,20 +33,24 @@
 
         <div class="container-fluid">
             <div class="row row-no-gutters">
-                    <div id="message" class="col-sm-2" style="background-color:lightblue"></div>
+                    <div class="col-sm-2" style="background-color:lightsalmon">
+                        <center><label>Information</label></center>
+                        <h5 id="message"></h5>
+                    </div>
                     <div class="col-sm-1" ></div>
 
                 <div id='monProfile' class="col-sm-6" style="background-color:LightGray;">
                         <center><h3>Mon profile</h3>
                        <img id='image' height="100" src="" alt="your image" /><br>
-                            <label>Nom : </label><p id='nom'></p>
-                            <label>Prénom : </label><p id='prenom'></p> 
-                            <label>Email : </label><p id='email'></p>
-                            <label>Sexe : </label><p id='sexe'></p>
-                            <label>Adresse : </label><p id='adresse'></p> 
-                            <label>Portable : </label><p id='portable'></p>
+                       <p id='nom'></p>
+                         <p id='prenom'></p> 
+                         <p id='email'></p>
+                           <p id='sexe'></p>
+                           <p id='adresse'></p> 
+                          <p id='portable'></p>
                         <a class="btn btn-primary" onclick='modifier();'>Modifer</a>
                         <br> </center>
+                        <br>
                 </div>
                  <div id='modifierProfile' class="col-sm-6" style="background-color:LightGray;display: none">
                     <center> 
@@ -78,9 +82,9 @@
             <div class="row row-no-gutters">
                 <div class="col-sm-3" ></div>
                 <div class="col-sm-3" style="background-color:lavenderblush;"><center><h3>Postuler </h3></center>
-                    <center><a class="btn btn-primary" href="postuler.html">C'est parti &raquo;</a></center></div>
+                    <center><a id="postuler" class="btn btn-primary" href="postuler.html">C'est parti &raquo;</a></center><br></div>
                 <div class="col-sm-3" style="background-color:lavender;"><center><h3>Rechercher</h3></center>
-                    <center><a class="btn btn-info" href="chercher.html">C'est parti &raquo;</a></center></div>
+                    <center><a id="rechercher" class="btn btn-info" href="chercher.html">C'est parti &raquo;</a></center><br></div>
                 <div class="col-sm-3"></div>
             </div>
             <br>

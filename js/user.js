@@ -60,10 +60,12 @@ setMessage(nounouData.verified);
 function setMessage(verified){
     if(verified){
         document.getElementById('message').innerText ="Votre profile a été validé. Vous pouvez postuler. " ;
-    }else if(verified =="0"){
-        document.getElementById('message').innerText ="Nous somme en train d'étudier votre profile. Veuillez patienter" ;
-    }else{
-        document.getElementById('message').innerText =nounouData.message;
+    }else {
+        if(nounouData.message.length==0){
+            document.getElementById('message').innerText ="Nous somme en train d'étudier votre profile. Veuillez patienter" ;
+        }else{
+            document.getElementById('message').innerText =nounouData.message;
+        } 
     }
     
 }

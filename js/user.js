@@ -44,7 +44,7 @@ function monProfile() {
 }
 
 function setUserProfile(nounouData){
-    document.getElementById('image').src="https://lo10bfm.s3-us-east-1.amazonaws.com/"+nounouData.photo;
+    document.getElementById('image').src="https://lo10bfm.s3.amazonaws.com/"+nounouData.photo;
     document.getElementById('nom').innerText = nounouData.nom;
 document.getElementById('prenom').innerText = nounouData.prenom;
 document.getElementById('email').innerText = nounouData.email;
@@ -55,6 +55,19 @@ if(nounouData.sexe=="f"){
 }
 document.getElementById('adresse').innerText = nounouData.adresse;
 document.getElementById('portable').innerText = nounouData.portable;
+setMessage(nounouData.verified);
+}
+function setMessage(verified){
+    if(verified){
+        document.getElementById('message').innerText ="Votre profile a été validé. Vous pouvez postuler. " ;
+    }else {
+        if(nounouData.message.length==0){
+            document.getElementById('message').innerText ="Nous somme en train d'étudier votre profile. Veuillez patienter" ;
+        }else{
+            document.getElementById('message').innerText =nounouData.message;
+        } 
+    }
+    
 }
 
 function showPreview(fileId, imgId) {

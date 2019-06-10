@@ -49,7 +49,7 @@ function imageAttention() {
 
 function noImageAttention() {
     document.getElementById("attention").style.display = "none";
-uploadToS3();
+
 }
 
 function showPreview(fileId, imgId) {
@@ -64,25 +64,29 @@ function showPreview(fileId, imgId) {
     document.getElementById(imgId).src = url;
 }
 
-function uploadToS3(){
+function uploadToS3(photoName) {
     var file = document.getElementById("firstForm").inputImage.files[0];
     var credentials = {
-        accessKeyId: 'AKIAICQA6SYFKP34PXJA ',
-        secretAccessKey: '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'
+        accessKeyId: accessKeyId,
+        secretAccessKey: secreAccessKey
     };  //秘钥形式的登录上传
     AWS.config.update(credentials);
-    AWS.config.region = 'us-west-1';   //设置区域
-     
+    AWS.config.region = 'us-east-1';   //设置区域
+
     // create bucket instance
-    var bucket = new AWS.S3({params: {Bucket: 'lo10images'}});  //选择桶
-        if (file) {
-            var params = {Key: file.name, ContentType: file.type, Body: file, 'Access-Control-Allow-Credentials': '*','ACL': 'public-read'}; //key可以设置为桶的相抵路径，Body为文件， ACL最好要设置
-            bucket.upload(params, function (err, data) {
-                console.log(err);  //打印出错误
-            });
-        } else {
-          console.log('Nothing to upload.');
-        }
+    var bucket = new AWS.S3({ params: { Bucket: 'lo10bfm' } });  //选择桶
+    if (file) {
+        var params = { Key: photoName, ContentType: file.type, Body: file, 'Access-Control-Allow-Credentials': '*', 'ACL': 'public-read' }; //key可以设置为桶的相抵路径，Body为文件， ACL最好要设置
+        bucket.upload(params, function (err, data) {
+            if(err){
+                console.log(err);
+            }else{
+                console.log("Upload succeeded!")
+            }
+        });
+    } else {
+        console.log('Nothing to upload.');
+    }
 }
 
 function getPhoto(callback) {
@@ -123,6 +127,7 @@ function submitF() {
         var tel = form.inputTelephone.value;
         var token = hex_md5(userId);
         var content = 'Bonjour, pour vérifier votre mail, veuillez cliquer ce lien : http://18.222.63.99:3000/verify/' + token + "/" + userId;
+        var file = document.getElementById("firstForm").inputImage.files[0];
 
         //jQuery ajax
         // Parameters: 
@@ -134,7 +139,8 @@ function submitF() {
         // dataType：这是设置返回数据类型的 假如express那边 res返回的是字符串 此处就是text；否则是JSON
         // 需要和express部分相吻合 否则无法执行 success这个回调函数（callback）
         // success：成功接收到res后执行的函数
-
+        var name = file.name
+        const path = name.replace(/[\w.]*\./,userId+".")
         var formData = {
             "userId": userId,
             "nom": nom,
@@ -144,49 +150,39 @@ function submitF() {
             "portable": tel,
             "role": role,
             "sexe": sexe,
-            "token": token
+            "token": token,
+            "photo": path
         }
 
         //
-        var file = document.getElementById("firstForm").inputImage.files[0];
-        var reader = new FileReader();
-
-        var imgFile;
-
-        reader.onload = function (e) {
-            imgFile = e.target.result;
+        uploadToS3(path);
 
 
-            imgFile = imgFile.split(",")[1];   //去掉开头的data:image/jpeg;base64,
-            formData['photo']=atob(imgFile)
+        $.ajax({
+            url: "http://18.222.63.99:3000/firstlogin",
+            header: "Access-Control-Allow-Origin: *",
+            type: "POST",
+            data: formData,
+            dataType: "json",
+            success: function (data) {
+                console.log("Response:" + data);
+                //send a email with a link
+                Email.send({
+                    Host: "smtp.elasticemail.com",
+                    Username: "ranfang19@gmail.com",
+                    Password: "7113902e-2358-48ee-874d-5c6991d9aa83",
+                    To: email,
+                    From: "ranfang19@gmail.com",
+                    Subject: "Nounou",
+                    Body: content
+                }).then(
+                    message => alert(message)
+                );
+                alert("Votre profile a bien été remis. Vous pouvez postuler une annonce après votre profile soit validé par notre système. ");
+                window.location.href = "user.html";
+            }
+        });
 
-            $.ajax({
-                url: "http://18.222.63.99:3000/firstlogin",
-                header: "Access-Control-Allow-Origin: *",
-                type: "POST",
-                data: formData,
-                dataType: "json",
-                success: function (data) {
-                    console.log("Response:" + data);
-                    //send a email with a link
-                    Email.send({
-                        Host: "smtp.elasticemail.com",
-                        Username: "ranfang19@gmail.com",
-                        Password: "7113902e-2358-48ee-874d-5c6991d9aa83",
-                        To: email,
-                        From: "ranfang19@gmail.com",
-                        Subject: "Nounou",
-                        Body: content
-                    }).then(
-                        message => alert(message)
-                    );
-                    alert("Votre profile a bien été remis. Vous pouvez postuler une annonce après votre profile soit validé par notre système. ");
-                    window.location.href = "user.html";
-                }
-            });
-        };
-        
-        reader.readAsDataURL(file);
 
         //
 

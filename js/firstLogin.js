@@ -155,8 +155,7 @@ function submitF() {
         }
 
         //
-        const photoName = userId
-        uploadToS3(photoName);
+        uploadToS3(path);
 
 
         $.ajax({

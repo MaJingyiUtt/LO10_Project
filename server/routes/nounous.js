@@ -13,12 +13,7 @@ router.get('/:userId', function (req, res) {
       console.log(results[0]);
 
       const path = "/home/ubuntu/photos/"+results[0]+".jpg"
-      fs.readFile(path, photo, (err) => {
-        if (err) {
-          console.error(err)
-          
-        }
-      })
+  
       res.send({"nounouData": results[0], });
     })
     db.disconnect()

@@ -33,36 +33,57 @@ function monProfile() {
         dataType: "json",
         success: function (data) {
             console.log(data.nounouData);
-            
+            setUserProfile(data.nounouData)
             
         }
-    });
-
-    document.getElementById('nom').innerText = userFamilyName;
-    document.getElementById('prenom').innerText = userGivenName;
-    document.getElementById('email').innerText = userEmail;
+    });  
     console.log(userId);  //key of BD
     //  document.getElementById('sexe').innerText = ;   //TODO : get from BD or register for the first time
     //document.getElementById('adresse').innerText = ;
     //document.getElementById('ville').innerText = ;
 }
 
+function setUserProfile(nounouData){
+    document.getElementById('image').src="https://lo10bfm.s3-us-east-1.amazonaws.com/"+nounouData.photo;
+    document.getElementById('nom').innerText = nounouData.nom;
+document.getElementById('prenom').innerText = nounouData.prenom;
+document.getElementById('email').innerText = nounouData.email;
+if(nounouData.sexe=="f"){
+    document.getElementById('sexe').innerText = "Femme";
+}else{
+    document.getElementById('sexe').innerText = "Homme";
+}
+document.getElementById('adresse').innerText = nounouData.adresse;
+document.getElementById('portable').innerText = nounouData.portable;
+}
+
+function showPreview(fileId, imgId) {
+    var file = document.getElementById(fileId);
+    var ua = navigator.userAgent.toLowerCase();
+    var url = '';
+    if (/msie/.test(ua)) {
+        url = file.value;
+    } else {
+        url = window.URL.createObjectURL(file.files[0]);
+    }
+    document.getElementById(imgId).src = url;
+}
+
 function modifier() {
     document.getElementById("monProfile").style.display = "none";
     document.getElementById("modifierProfile").style.display = "block";
-    document.getElementById("inputnom").value = userFamilyName;
-    document.getElementById("inputprenom").value = userGivenName;
-    document.getElementById("inputemail").value = userEmail;
-  //  document.getElementById("inputsexe").value = ;  //TODO : write value from BD if exists
-//document.getElementById("inputadresse").value = ;
-//document.getElementById("inputville").value = ;
+    document.getElementById('inputnom').innerText = nounouData.nom;
+document.getElementById('inputprenom').innerText = nounouData.prenom;
+document.getElementById('inputemail').innerText = nounouData.email;
+document.getElementById('inputadresse').innerText = nounouData.adresse;
+document.getElementById('inputportable').innerText = nounouData.portable;
 }
 
 function enregisterP() {
     document.getElementById("monProfile").style.display = "block";
     document.getElementById("modifierProfile").style.display = "none";
-    var inputsexe = document.getElementById("inputsexe").value;
-    var inputadresse = document.getElementById("inputadresse").value;
-    var inputville = document.getElementById("inputville").value;
-    console.log(inputsexe, inputadresse, inputville);
+   // var inputsexe = document.getElementById("inputsexe").value;
+   // var inputadresse = document.getElementById("inputadresse").value;
+   // var inputville = document.getElementById("inputville").value;
+    //console.log(inputsexe, inputadresse, inputville);
 }

@@ -55,7 +55,7 @@ if(nounouData.sexe=="f"){
 }
 document.getElementById('adresse').innerText = nounouData.adresse;
 document.getElementById('portable').innerText = nounouData.portable;
-setMessage(nounouData.verified);
+setMessage(nounouData);
 }
 function setMessage(nounouData){
     if(nounouData.verified){

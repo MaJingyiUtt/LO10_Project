@@ -3,13 +3,13 @@ const fs = require("fs")
 const rekognition = new AWS.Rekognition({ region: 'us-east-1' })
 
 const detectFace = function (path,callback){
-    const image = fs.readFileSync(path)
-    console.log(image)
+    //Use S3 parameters
     const param = {
-        Image: {
-            //    No need to pass to Base64, 
-            //    because it's aotomatically transfered to Base64 after the tag 'Bytes'
-            Bytes: image
+        "Image": {
+            "S3Object": {
+                "Bucket": "lo10bfm",
+                "Name": path
+            }
         }
     }
     rekognition.detectFaces(param, function (err, data) {

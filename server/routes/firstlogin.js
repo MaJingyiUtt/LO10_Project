@@ -12,19 +12,8 @@ const table = "login"
 router.post('/', function (req, res) {
     console.info("request received")
     const data = req.body
-    const photo = data.photo
     
-    //Write the stream of photo into a file
-    const path = "/home/ubuntu/photos/"+data.userId+".jpg"
-    data.photo = path
-    console.info(req.body)
-    fs.writeFile(path, photo, (err) => {
-        if (err) {
-          console.error(err)
-          
-        }
-      })
-      
+    console.info(data)
     //connect to db and insert information
     db.connect()
     db.insert(table, data)

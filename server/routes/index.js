@@ -32,6 +32,8 @@ router.get('/verify/:token/:id', function (req, res) {
   // req.params.id
   if(isVerified == false){
     // todo 
+    db.update(table,"SET verified = '"+isVerified+"', WHERE userId='"+userId+"'")
+
   }else{
     const userId=  req.params.id
     const table = "login"

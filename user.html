@@ -33,40 +33,44 @@
 
         <div class="container-fluid">
             <div class="row row-no-gutters">
-                <div class="col-sm-3" ></div>
+                    <div class="col-sm-3" ></div>
                 <div id='monProfile' class="col-sm-6" style="background-color:LightGray;">
-                    <center> 
-                        <h3>Mon profile</h3>
-                        <div>
+                        <center><h3>Mon profile</h3>
+                       <img id='image' height="100" src="" alt="your image" /><br>
                             <label>Nom : </label><p id='nom'></p>
                             <label>Prénom : </label><p id='prenom'></p> 
                             <label>Email : </label><p id='email'></p>
                             <label>Sexe : </label><p id='sexe'></p>
-                            <label>Adresse : </label><p id='adresse'></p>
-                            <label>Ville : </label><p id='ville'></p>
-                            </div>
+                            <label>Adresse : </label><p id='adresse'></p> 
+                            <label>Portable : </label><p id='portable'></p>
                         <a class="btn btn-primary" onclick='modifier();'>Modifer</a>
-                        <br>
-                    </center>
+                        <br> </center>
                 </div>
                  <div id='modifierProfile' class="col-sm-6" style="background-color:LightGray;display: none">
                     <center> 
                         <h3>Modifier mon profile</h3>
                         <div>
-                            <label>Nom:</label><p><input type="text" id='inputnom' disabled></p>
-                            <label>Prénom : </label><p><input type="text" id='inputprenom' disabled></p>
-                            <label>Email : </label><p><input type="text" id='inputemail' disabled></p>
-                            <label>Sexe : </label><p><input type="text" id='inputsexe'></p>
+                            <label>Nom:</label><p><input type="text" id='inputnom'></p>
+                            <label>Prénom : </label><p><input type="text" id='inputprenom'></p>
+                            <label>Email : </label><p><input type="text" id='inputemail'></p>
+                            <label>Sexe : </label><br>
+                        <input  style="margin-left: 40px" class="form-check-input" type="radio" name="radiosexe" id="radioHomme" value="h" checked> Homme
+                            <input  style="margin-left: 40px" class="form-check-input" type="radio" name="radiosexe" id="radioFemme" value="f">Femme
+                            <br>
                             <label>Adresse : </label><p><input type="text" id='inputadresse'></p>
-                            <label>Ville : </label><p><input type="text" id='inputville'></p>
+                            <label>Portable : </label><p><input type="text" id='inputportable'></p>
+                            <label>Image</label><br>
+                            <input type="file" id="inputImage" onchange="showPreview(this.id, 'portrait')"/>
+                            <img src="" id="portrait" style="width: 200px; display: block;" />        
+                            <br>
                             </div>
                         <a class="btn btn-primary" onclick='enregisterP();'>Enregistrer</a>
                         <br>
                     </center>
                 </div>
-                
-                <div class="col-sm-3"></div>
+                <div class="col-sm-3" ></div>
             </div>
+            
             <br>
 
             <div class="row row-no-gutters">

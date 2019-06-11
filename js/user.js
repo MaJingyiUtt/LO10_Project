@@ -99,16 +99,16 @@ function modifier() {
 
 function setInputs(nounouData){
     document.getElementById('inputnom').value = nounouData.nom;
-    document.getElementById('inputprenom').innerText = nounouData.prenom;
-    document.getElementById('inputemail').innerText = nounouData.email;
+    document.getElementById('inputprenom').value = nounouData.prenom;
+    document.getElementById('inputemail').value = nounouData.email;
     if (nounouData.sexe == "f") {
         document.getElementById('radioFemme').checked=true;
     } else {
         document.getElementById('radioHomme').checked=true;
     }
-    document.getElementById('adresse').innerText = "Adresse : " + nounouData.adresse;
-    document.getElementById('portable').innerText = "Portable : " + nounouData.portable;
-    document.getElementById('ville').innerText = "Ville : " + nounouData.ville;
+    document.getElementById('adresse').value = "Adresse : " + nounouData.adresse;
+    document.getElementById('portable').value = "Portable : " + nounouData.portable;
+    document.getElementById('ville').value = "Ville : " + nounouData.ville;
 }
 
 
@@ -117,7 +117,7 @@ function enregisterP() {
     if (checkLogin()) {
         var nom = document.getElementById("inputnom").value;
         var prenom = document.getElementById("inputprenom").value;
-        var sexe = document.getElementById("radiosexe").value;
+        var sexe = document.getElementsByName("radiosexe").value;
         var email = document.getElementById("inputemail").value;
         var adresse = document.getElementById("inputadresse").value;
         var ville = document.getElementById("inputville").value.toUpperCase();
@@ -164,17 +164,17 @@ function enregisterP() {
             success: function (data) {
                 console.log("Response:" + data);
                 //send a email with a link
-                Email.send({
-                    Host: "smtp.elasticemail.com",
-                    Username: "ranfang19@gmail.com",
-                    Password: "7113902e-2358-48ee-874d-5c6991d9aa83",
-                    To: email,
-                    From: "ranfang19@gmail.com",
-                    Subject: "Nounou",
-                    Body: content
-                }).then(
-                    message => alert(message)
-                );
+                // Email.send({
+                //     Host: "smtp.elasticemail.com",
+                //     Username: "ranfang19@gmail.com",
+                //     Password: "7113902e-2358-48ee-874d-5c6991d9aa83",
+                //     To: email,
+                //     From: "ranfang19@gmail.com",
+                //     Subject: "Nounou",
+                //     Body: content
+                // }).then(
+                //     message => alert(message)
+                // );
                 alert("Votre profile a bien été remis. Vous pouvez postuler une annonce après votre profile soit validé par notre système. ");
                 window.location.href = "user.html";
             }

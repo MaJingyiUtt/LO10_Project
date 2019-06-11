@@ -1,10 +1,7 @@
 var map,infowindow;
-var form = document.getElementById("form1");
 var isSubmitted = false;
-
-var locations;
 var placeSearch;
-
+var ville;
 var marker, i;
 
 var userId;
@@ -78,6 +75,13 @@ function createMap () {
         }
       }));
       placeSearch = p.geometry.location;
+      var arrAddress = p.address_components;
+      for (ac = 0; ac < arrAddress.length; ac++) {
+          if (arrAddress[ac].types[0] == "locality") 
+          { 
+            ville = arrAddress[ac].long_name
+          }
+      }
       if (p.geometry.viewport)
         bounds.union(p.geometry.viewport);
       else
@@ -88,10 +92,32 @@ function createMap () {
 }
 
 function submitFormData(){
-  // var content = form.content.value;
-  // var search = form.search.value;
-  // var sexe = form.sexe.value;
-  // var prix_max = form.prix_max.value;
+  var form = document.getElementById("form1");
+  var sexe
+  if (form.sexe.value=="Femme"){
+    sexe="f"
+  }
+  else{
+    sexe="h"
+  }
+  
+  var prix = form.prix_max.value; //最高价格
+  var content = form.content.value; //搜索的内容
+  //ville
+
+  $.ajax({
+    url: "http://18.222.63.99:3000/search/"+sexe+"/"+prix+"/"+content+"/"+ville,
+    header: "Access-Control-Allow-Origin: *",
+    type: "GET",
+    dataType: "json",
+    success: function (data) {
+        console.log(data.resultsData); 
+    }
+});
+
+// document.getElementById('results').innerHTML = "<div style='background-color:#eeeeee; padding:40px;margin-bottom:30px'><div><b>Nom: </b></div><div><b>Adresse: </b>address</div></div>";
+
+
     
     address = [
       ['Julie', "UTT, Troyes, France",1],

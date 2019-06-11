@@ -111,9 +111,10 @@ function submitFormData(){
   }
   
   var content = form.content.value; //搜索的内容
-
+  var upper_ville = ville.toUpperCase();
+  
   $.ajax({
-    url: "http://18.222.63.99:3000/search/"+sexe+"/"+prix+"/"+content+"/"+ville,
+    url: "http://18.222.63.99:3000/search/"+sexe+"/"+prix+"/"+content+"/"+upper_ville,
     header: "Access-Control-Allow-Origin: *",
     type: "GET",
     dataType: "json",

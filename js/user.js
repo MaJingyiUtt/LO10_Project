@@ -91,7 +91,7 @@ function modifier() {
         dataType: "json",
         success: function (data) {
             console.log(data.nounouData);
-            setInputs(nounouData);
+            setInputs(data.nounouData);
         }
     });
    // document.getElementById('inputnom').innerText = nounouData.nom;

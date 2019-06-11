@@ -47,7 +47,7 @@ router.get('/verify/:token/:id', function (req, res) {
       // Returns the Results and the reason if not succeeded,which is contained in the message
       detectFace(path, function (verified,message){
         db.connect()
-        db.update(table," SET verified = '"+verified+"', message = '"+message+"' WHERE userId='"+userId+"'")
+        db.update(table," SET verified = "+verified+", message = '"+message+"' WHERE userId='"+userId+"'")
         db.disconnect()
         res.send({"verified": verified, "message": message})
       })

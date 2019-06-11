@@ -55,6 +55,7 @@ function setUserProfile(nounouData) {
     }
     document.getElementById('adresse').innerText = "Adresse : " + nounouData.adresse;
     document.getElementById('portable').innerText = "Portable : " + nounouData.portable;
+    document.getElementById('ville').innerText = "Ville : " + nounouData.ville;
     setMessage(nounouData);
     document.getElementById('postuler').disabled = false;
     document.getElementById('rechercher').disabled = false;

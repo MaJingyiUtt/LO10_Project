@@ -123,6 +123,7 @@ function submitFormData(){
   else{
     content=form.content.value
   }
+  document.getElementById('results').innerHTML = "";
 
   $.ajax({
     url: "http://18.222.63.99:3000/search/"+sexe+"/"+prix+"/"+content+"/"+upper_ville,
@@ -137,6 +138,7 @@ function submitFormData(){
         // }
         // console.log(results_adress)
         for (i = 0; i < data.resultsData.length; i++) {
+          document.getElementById('results').innerHTML += "<div style='background-color:#eeeeee; padding:40px;margin-bottom:30px'><div><b>Nom:</b>"+data.resultsData[i].nom+"</div><div><b>Prenom:</b>"+data.resultsData[i].prenom+"</div><div><b>Adresse:</b>"+data.resultsData[i].adresse+"</div></div>";
           currAddress = data.resultsData[i].adresse;
           geocoder.geocode( { 'address': currAddress}, function(results, status) {
             if (status == google.maps.GeocoderStatus.OK) {
@@ -155,7 +157,6 @@ function submitFormData(){
             })(marker,content,infowindow)); 
             }
           })
-          document.getElementById('results').innerHTML = "<div style='background-color:#eeeeee; padding:40px;margin-bottom:30px'><div><b>Nom:"+data.resultsData[i].nom+"</b></div><div><b>Prenom:"+data.resultsData[i].prenom+"</b></div><div><b>Adresse:"+data.resultsData[i].adresse+"</b>address</div></div>";
         };
     }
 });

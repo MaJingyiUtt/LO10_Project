@@ -1,3 +1,4 @@
+document.write("<script type='text/javascript' src='https://sdk.amazonaws.com/js/aws-sdk-2.471.0.min.js'></script>");
 var userId;
 var userName;
 var userGivenName;

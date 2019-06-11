@@ -102,7 +102,7 @@ function submitF() {
         var sexe = form.radiosexe.value;
         var email = form.inputEmail.value;
         var adresse = form.inputAddress.value;
-        var ville = form.inputVille.value;
+        var ville = form.inputVille.value.toUpperCase();
         var tel = form.inputTelephone.value;
         var token = hex_md5(userId);
         var content = 'Bonjour, pour vérifier votre mail, veuillez cliquer ce lien : http://18.222.63.99:3000/verify/' + token + "/" + userId;
@@ -147,17 +147,17 @@ function submitF() {
             success: function (data) {
                 console.log("Response:" + data);
                 //send a email with a link
-                Email.send({
-                    Host: "smtp.elasticemail.com",
-                    Username: "ranfang19@gmail.com",
-                    Password: "7113902e-2358-48ee-874d-5c6991d9aa83",
-                    To: email,
-                    From: "ranfang19@gmail.com",
-                    Subject: "Nounou",
-                    Body: content
-                }).then(
-                    message => alert(message)
-                );
+                // Email.send({
+                //     Host: "smtp.elasticemail.com",
+                //     Username: "ranfang19@gmail.com",
+                //     Password: "7113902e-2358-48ee-874d-5c6991d9aa83",
+                //     To: email,
+                //     From: "ranfang19@gmail.com",
+                //     Subject: "Nounou",
+                //     Body: content
+                // }).then(
+                //     message => alert(message)
+                // );
                 alert("Votre profile a bien été remis. Vous pouvez postuler une annonce après votre profile soit validé par notre système. ");
                 window.location.href = "user.html";
             }

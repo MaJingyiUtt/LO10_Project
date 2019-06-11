@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const fs = require("fs")
+const elasticemail = require('elasticemail')
 const Database = require("../utils/database")
 
 const db = new Database()
@@ -12,7 +13,29 @@ const table = "login"
 router.post('/', function (req, res) {
     console.info("request received")
     const data = req.body
-    
+    var content = 'Bonjour, pour vérifier votre mail, veuillez cliquer ce lien : http://18.222.63.99:3000/verify/' + data.token + "/" + data.userId;
+
+    var client = elasticemail.createClient({
+        username: 'ranfang19@gmail.com',
+        apiKey: '7113902e-2358-48ee-874d-5c6991d9aa83'
+      })
+       
+      var msg = {
+        from: 'ranfang19@gmail.com',
+        from_name: 'Nounous',
+        to: data.email,
+        subject: 'Nounous',
+        body_text: content
+      }
+       
+      client.mailer.send(msg, function(err, result) {
+        if (err) {
+          return console.error(err)
+        }
+       
+        console.log(result)
+    })
+
     console.info(data)
     //connect to db and insert information
     db.connect()

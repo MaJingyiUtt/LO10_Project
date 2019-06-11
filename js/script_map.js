@@ -110,45 +110,63 @@ function submitFormData(){
     prix=form.prix_max.value
   }
   
-  var content = form.content.value; //搜索的内容
+  if(!ville){
+    upper_ville="TROYES"
+  }
+  else{
+    upper_ville = ville.toUpperCase();
+  }
+
+  if(!form.content.value){
+    content="*******"
+  }
+  else{
+    content=form.content.value
+  }
+  document.getElementById('results').innerHTML = "";
 
   $.ajax({
-    url: "http://18.222.63.99:3000/search/"+sexe+"/"+prix+"/"+content+"/"+ville,
+    url: "http://18.222.63.99:3000/search/"+sexe+"/"+prix+"/"+content+"/"+upper_ville,
     header: "Access-Control-Allow-Origin: *",
     type: "GET",
     dataType: "json",
     success: function (data) {
-        console.log(data.resultsData); 
+        console.log(data.resultsData);
+        // var results_adress=[];
+        // for (i = 0; i < data.resultsData.length; i++){
+        //   results_adress[i] = data.resultsData[i].adresse
+        // }
+        // console.log(results_adress)
+        for (i = 0; i < data.resultsData.length; i++) {
+          document.getElementById('results').innerHTML += "<div style='background-color:#eeeeee; padding:40px;margin-bottom:30px'><div><b>Nom:</b>"+data.resultsData[i].nom+"</div><div><b>Prenom:</b>"+data.resultsData[i].prenom+"</div><div><b>Adresse:</b>"+data.resultsData[i].adresse+"</div></div>";
+          currAddress = data.resultsData[i].adresse;
+          geocoder.geocode( { 'address': currAddress}, function(results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+              marker = new google.maps.Marker({
+                position: results[0].geometry.location,
+                map: map,
+                title:results[0].formatted_address
+              });
+              content=results[0].formatted_address;
+              var infowindow = new google.maps.InfoWindow();
+              google.maps.event.addListener(marker,'click', (function(marker,content,infowindow){ 
+                return function() {
+                  infowindow.setContent(content);
+                  infowindow.open(map,marker);
+                };
+            })(marker,content,infowindow)); 
+            }
+          })
+        };
     }
 });
 
-// document.getElementById('results').innerHTML = "<div style='background-color:#eeeeee; padding:40px;margin-bottom:30px'><div><b>Nom: </b></div><div><b>Adresse: </b>address</div></div>";
 
-    address = [
-      ['Julie', "UTT, Troyes, France",1],
-      ['Tom', "3 Rue Generale de gaulle,10000 Troyes,France",2]
-    ];
+    // address = [
+    //   ['Julie', "UTT, Troyes, France",1],
+    //   ['Tom', "3 Rue Generale de gaulle,10000 Troyes,France",2]
+    // ];
 
-    for (i = 0; i < address.length; i++) {
-      currAddress = address[i][1];
-      geocoder.geocode( { 'address': currAddress}, function(results, status) {
-        if (status == google.maps.GeocoderStatus.OK) {
-          marker = new google.maps.Marker({
-            position: results[0].geometry.location,
-            map: map,
-            title:results[0].formatted_address
-          });
-          content=results[0].formatted_address;
-          var infowindow = new google.maps.InfoWindow();
-          google.maps.event.addListener(marker,'click', (function(marker,content,infowindow){ 
-            return function() {
-              infowindow.setContent(content);
-              infowindow.open(map,marker);
-            };
-        })(marker,content,infowindow)); 
-        }
-      })
-    };
 }
 
 function subForm(){

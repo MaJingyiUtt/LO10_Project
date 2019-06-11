@@ -89,28 +89,6 @@ function uploadToS3(photoName) {
     }
 }
 
-function getPhoto(callback) {
-    //   https://blog.csdn.net/fd214333890/article/details/71250488
-    var file = document.getElementById("firstForm").inputImage.files[0];
-    //  var file = $("#imgForm").find("input")[0].files[0];
-    //创建读取文件的对象
-    var reader = new FileReader();
-    //创建文件读取相关的变量
-    var imgFile;
-    //为文件读取成功设置事件
-    reader.onload = function (e) {
-        imgFile = e.target.result;
-
-
-        imgFile = imgFile.split(",")[1];   //去掉开头的data:image/jpeg;base64,
-        console.log(imgFile);
-        callback(imgFile)
-    };
-    //正式读取文件
-    reader.readAsDataURL(file);
-}
-
-
 /**
  * Click button "submit" and call this function 
  *

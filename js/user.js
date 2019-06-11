@@ -147,7 +147,6 @@ function enregisterP() {
             "email": email,
             "portable": tel,
             "sexe": sexe,
-            "token": token,
             "photo": path
         }
 

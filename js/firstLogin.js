@@ -124,6 +124,7 @@ function submitF() {
         var sexe = form.radiosexe.value;
         var email = form.inputEmail.value;
         var adresse = form.inputAddress.value;
+        var ville = form.inputVille.value;
         var tel = form.inputTelephone.value;
         var token = hex_md5(userId);
         var content = 'Bonjour, pour vérifier votre mail, veuillez cliquer ce lien : http://18.222.63.99:3000/verify/' + token + "/" + userId;
@@ -146,6 +147,7 @@ function submitF() {
             "nom": nom,
             "prenom": prenom,
             "adresse": adresse,
+            "ville":ville,
             "email": email,
             "portable": tel,
             "role": role,

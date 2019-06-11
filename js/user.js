@@ -63,7 +63,7 @@ function setUserProfile(nounouData) {
 function setMessage(nounouData) {
     console.log("verified? = "+nounouData.verified);
     console.log("message = "+nounouData.message);
-    if (nounouData.verified==null) {
+    if (nounouData.verified) {
         document.getElementById('message').innerText = "  Votre profile a été validé. Vous pouvez postuler. ";
     } else {
         document.getElementById('postuler').disabled = true;

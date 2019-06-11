@@ -19,7 +19,7 @@ const detectFace = function (path,callback){
             var message
             const info = data.FaceDetails
             if(info.length != 1){
-                message = "There is/are ",info.length," person(s) in your photo"
+                message = "There is/are "+info.length+" person(s) in your photo"
                 callback(false,message)
             }else if(info[0].BoundingBox.Width*info[0].BoundingBox.Height<0.1){
                 message = "Your face is not big enough in the photo(>10%)"

@@ -57,7 +57,7 @@ function setUserProfile(nounouData) {
     document.getElementById('portable').innerText = "Adresse : " + nounouData.portable;
     setMessage(nounouData);
     document.getElementById('postuler').disabled = false;
-    document.getElementById('chercher').disabled = false;
+    document.getElementById('rechercher').disabled = false;
 }
 function setMessage(nounouData) {
     if (nounouData.verified) {

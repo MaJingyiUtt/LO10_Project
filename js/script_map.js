@@ -93,6 +93,7 @@ function createMap () {
 
 function submitFormData(){
   var form = document.getElementById("form1");
+  
   var sexe
   if (form.sexe.value=="Femme"){
     sexe="f"
@@ -101,12 +102,19 @@ function submitFormData(){
     sexe="h"
   }
   
-  var prix = form.prix_max.value; //最高价格
+  var prix 
+  if (form.prix_max.value=="Prix max"){
+    prix=99999
+  }
+  else{
+    prix=form.prix_max.value
+  }
+  
   var content = form.content.value; //搜索的内容
-  //ville
-
+  var upper_ville = ville.toUpperCase();
+  
   $.ajax({
-    url: "http://18.222.63.99:3000/search/"+sexe+"/"+prix+"/"+content+"/"+ville,
+    url: "http://18.222.63.99:3000/search/"+sexe+"/"+prix+"/"+content+"/"+upper_ville,
     header: "Access-Control-Allow-Origin: *",
     type: "GET",
     dataType: "json",
@@ -117,8 +125,6 @@ function submitFormData(){
 
 // document.getElementById('results').innerHTML = "<div style='background-color:#eeeeee; padding:40px;margin-bottom:30px'><div><b>Nom: </b></div><div><b>Adresse: </b>address</div></div>";
 
-
-    
     address = [
       ['Julie', "UTT, Troyes, France",1],
       ['Tom', "3 Rue Generale de gaulle,10000 Troyes,France",2]

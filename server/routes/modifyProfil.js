@@ -16,7 +16,7 @@ router.post('/', function (req, res) {
     console.info(data)
     //connect to db and insert information
     db.connect()
-    db.update(table," SET message='Nous somme en train d'étudier votre profile modifié. Veuillez patienter. ', verified = false, nom='"+data.nom+"', prenom='"+data.prenom+"', adresse='"+data.adresse+"', ville='"+data.ville+"', email='"+data.email+"', portable='"+data.portable+"', sexe='"+data.sexe+"', photo='"+data.path+"', WHERE userId='"+data.userId+"'")
+    db.update(table," SET message='Vous venez de modifier votre profil. ', verified = false, nom='"+data.nom+"', prenom='"+data.prenom+"', adresse='"+data.adresse+"', ville='"+data.ville+"', email='"+data.email+"', portable='"+data.portable+"', sexe='"+data.sexe+"', photo='"+data.path+"', WHERE userId='"+data.userId+"'")
     
     db.disconnect()
     res.send({ "message": "post successfully" })

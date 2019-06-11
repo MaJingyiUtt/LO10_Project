@@ -16,7 +16,7 @@ router.post('/', function (req, res) {
     console.info(data)
     //connect to db and insert information
     db.connect()
-    db.update(table, data)
+    db.update(table,"SET verified = false,nom='"+nom+"',prenom='"+prenom+"',adresse='"+adresse+"',ville='"+ville+"',email='"+email+"',portable='"+tel+"',sexe='"+sexe+"',token='"+token+"',photo='"+path+"', WHERE userId='"+userId+"'")
     db.disconnect()
     res.send({ "message": "post successfully" })
 })

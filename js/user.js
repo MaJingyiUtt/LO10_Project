@@ -106,9 +106,9 @@ function setInputs(nounouData){
     } else {
         document.getElementById('radioHomme').checked=true;
     }
-    document.getElementById('inputadresse').value = "Adresse : " + nounouData.adresse;
-    document.getElementById('inputportable').value = "Portable : " + nounouData.portable;
-    document.getElementById('inputville').value = "Ville : " + nounouData.ville;
+    document.getElementById('inputadresse').value = nounouData.adresse;
+    document.getElementById('inputportable').value = nounouData.portable;
+    document.getElementById('inputville').value = nounouData.ville;
 }
 
 
@@ -122,8 +122,8 @@ function enregisterP() {
         var adresse = document.getElementById("inputadresse").value;
         var ville = document.getElementById("inputville").value.toUpperCase();
         var tel = document.getElementById("inputportable").value;
-        var token = hex_md5(userId);
-        var content = 'Bonjour, pour vérifier votre mail, veuillez cliquer ce lien : http://18.222.63.99:3000/verify/' + token + "/" + userId;
+       // var token = hex_md5(userId);
+        //var content = 'Bonjour, pour vérifier votre mail, veuillez cliquer ce lien : http://18.222.63.99:3000/verify/' + token + "/" + userId;
         var file = document.getElementById("inputImage").files[0];
 
         //jQuery ajax

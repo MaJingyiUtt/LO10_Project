@@ -110,9 +110,14 @@ function submitFormData(){
     prix=form.prix_max.value
   }
   
-  var content = form.content.value; //搜索的内容
   var upper_ville = ville.toUpperCase();
-  
+  if(!form.content.value){
+    content="*******"
+  }
+  else{
+    content=form.content.value
+  }
+
   $.ajax({
     url: "http://18.222.63.99:3000/search/"+sexe+"/"+prix+"/"+content+"/"+upper_ville,
     header: "Access-Control-Allow-Origin: *",
@@ -123,6 +128,11 @@ function submitFormData(){
     }
 });
 
+  for (i = 0; i < data.resultsData.length; i++){
+    results_adress[i] = data.resultsData[i].adresse
+  }
+
+  console.log(results_adress)
 // document.getElementById('results').innerHTML = "<div style='background-color:#eeeeee; padding:40px;margin-bottom:30px'><div><b>Nom: </b></div><div><b>Adresse: </b>address</div></div>";
 
     address = [

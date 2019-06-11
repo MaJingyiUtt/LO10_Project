@@ -54,16 +54,16 @@ function setUserProfile(nounouData) {
         document.getElementById('sexe').innerText = "Sexe : " + "Homme";
     }
     document.getElementById('adresse').innerText = "Adresse : " + nounouData.adresse;
-    document.getElementById('portable').innerText = "Portable : " + nounouData.portable;
+    document.getElementById('portable').innerText = "Adresse : " + nounouData.portable;
     setMessage(nounouData);
-    document.getElementById('postuler').style.display = "block";
-    document.getElementById('rechercher').style.display = "block";
+    document.getElementById('postuler').disabled = false;
+    document.getElementById('chercher').disabled = false;
 }
 function setMessage(nounouData) {
     if (nounouData.verified) {
         document.getElementById('message').innerText = "  Votre profile a été validé. Vous pouvez postuler. ";
     } else {
-        document.getElementById('postuler').style.display = "none";
+        document.getElementById('postuler').disabled = true;
         if (nounouData.message == null) {
             document.getElementById('message').innerText = "  Nous somme en train d'étudier votre profile. Veuillez patienter. ";
         } else {

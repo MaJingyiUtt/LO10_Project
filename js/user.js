@@ -55,6 +55,7 @@ function setUserProfile(nounouData) {
     }
     document.getElementById('adresse').innerText = "Adresse : " + nounouData.adresse;
     document.getElementById('portable').innerText = "Portable : " + nounouData.portable;
+    document.getElementById('ville').innerText = "Ville : " + nounouData.ville;
     setMessage(nounouData);
     document.getElementById('postuler').disabled = false;
     document.getElementById('rechercher').disabled = false;
@@ -62,7 +63,7 @@ function setUserProfile(nounouData) {
 function setMessage(nounouData) {
     console.log("verified? = "+nounouData.verified);
     console.log("message = "+nounouData.message);
-    if (nounouData.verified) {
+    if (nounouData.verified==null) {
         document.getElementById('message').innerText = "  Votre profile a été validé. Vous pouvez postuler. ";
     } else {
         document.getElementById('postuler').disabled = true;

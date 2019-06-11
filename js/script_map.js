@@ -123,6 +123,7 @@ function submitFormData(){
   else{
     content=form.content.value
   }
+  document.getElementById('results').innerHTML = "";
 
   $.ajax({
     url: "http://18.222.63.99:3000/search/"+sexe+"/"+prix+"/"+content+"/"+upper_ville,

@@ -14,9 +14,9 @@ router.get('/:sexe/:prix/:content/:ville', function (req, res) {
     if(!ville){
       ville="TROYES"
     }
-    var sql = "WHERE d.userId=l.userId and l.role='n' and l.sexe = '"+sexe+"' and l.ville='"+ville+"' and l.verified='true' and d.prix<="+prix+" and d.description LIKE '%"+content+"%'"
-    if (!content){
-      sql = "WHERE d.userId=l.userId and l.role='n' and l.sexe = '"+sexe+"' and l.ville='"+ville+"' and l.verified='true' and d.prix<="+prix+""
+    var sql = "WHERE d.userId=l.userId and l.role='n' and l.sexe = '"+sexe+"' and l.ville='"+ville+"' and l.verified=true and d.prix<="+prix+" and d.description LIKE '%"+content+"%'"
+    if (content=="*******"){
+      sql = "WHERE d.userId=l.userId and l.role='n' and l.sexe = '"+sexe+"' and l.ville='"+ville+"' and l.verified=true and d.prix<="+prix+""
     }
     db.connect()
     db.select(table,"*",sql,function (results){

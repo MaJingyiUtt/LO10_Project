@@ -124,15 +124,14 @@ function submitFormData(){
     type: "GET",
     dataType: "json",
     success: function (data) {
-        console.log(data.resultsData); 
+        console.log(data.resultsData);
+        for (i = 0; i < data.resultsData.length; i++){
+          results_adress[i] = data.resultsData[i].adresse
+        }
+        console.log(results_adress)
     }
 });
 
-  for (i = 0; i < data.resultsData.length; i++){
-    results_adress[i] = data.resultsData[i].adresse
-  }
-
-  console.log(results_adress)
 // document.getElementById('results').innerHTML = "<div style='background-color:#eeeeee; padding:40px;margin-bottom:30px'><div><b>Nom: </b></div><div><b>Adresse: </b>address</div></div>";
 
     address = [

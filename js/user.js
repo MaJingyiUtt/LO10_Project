@@ -122,7 +122,11 @@ function enregisterP() {
     if (checkLogin()) {
         var nom = document.getElementById("inputnom").value;
         var prenom = document.getElementById("inputprenom").value;
-        var sexe = document.getElementsByName("radiosexe").value;
+        if(document.getElementsByName("radiosexe")[0].checked){
+            sexe = document.getElementsByName("radiosexe")[0].value;
+        }else{
+            sexe = document.getElementsByName("radiosexe")[1].value;
+        }
         var email = document.getElementById("inputemail").value;
         var adresse = document.getElementById("inputadresse").value;
         var ville = document.getElementById("inputville").value.toUpperCase();

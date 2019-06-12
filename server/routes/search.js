@@ -11,9 +11,14 @@ router.get('/:sexe/:prix/:content/:ville', function (req, res) {
     const prix = req.params.prix //最高价格
     const content = req.params.content //内容
     const ville = req.params.ville //位置
-    var sql = "WHERE d.userId=l.userId and l.role='n' and l.sexe = '"+sexe+"' and l.ville='"+ville+"' and l.verified=true and d.prix<="+prix+" and d.description LIKE '%"+content+"%'"
-    if (content=="*******"){
-      sql = "WHERE d.userId=l.userId and l.role='n' and l.sexe = '"+sexe+"' and l.ville='"+ville+"' and l.verified=true and d.prix<="+prix+""
+    
+    var sql = "WHERE d.userId=l.userId and l.role='n' and l.ville='"+ville+"' and l.verified=true and d.prix<="+prix
+    
+    if (sexe!="tous"){
+      sql += " and l.sexe = '"+sexe+"'"
+    }
+    if (content!="*******"){
+      sql += " and d.description LIKE '%"+content+"%'"
     }
     db.connect()
     db.select(table,"*",sql,function (results){

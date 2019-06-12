@@ -151,34 +151,41 @@ function enregisterP() {
             "photo": path
         }
 
-        //
-        uploadToS3(path);
+        var file = document.getElementById("inputImage").files[0];
+    var credentials = {
+        accessKeyId: accessKeyId,
+        secretAccessKey: secreAccessKey
+    };  //秘钥形式的登录上传
+    AWS.config.update(credentials);
+    AWS.config.region = 'us-east-1';   //设置区域
 
-
-        $.ajax({
-            url: "http://18.222.63.99:3000/modifyProfil",
-            header: "Access-Control-Allow-Origin: *",
-            type: "POST",
-            data: formData,
-            dataType: "json",
-            success: function (data) {
-                console.log("Response:" + data);
-                //send a email with a link
-                // Email.send({
-                //     Host: "smtp.elasticemail.com",
-                //     Username: "ranfang19@gmail.com",
-                //     Password: "7113902e-2358-48ee-874d-5c6991d9aa83",
-                //     To: email,
-                //     From: "ranfang19@gmail.com",
-                //     Subject: "Nounou",
-                //     Body: content
-                // }).then(
-                //     message => alert(message)
-                // );
-                alert("Votre profile a bien été remis. Vous pouvez postuler une annonce après votre profile soit validé par notre système. ");
-                window.location.href = "user.html";
+    // create bucket instance
+    var bucket = new AWS.S3({ params: { Bucket: 'lo10bfm' } });  //选择桶
+    if (file) {
+        var params = { Key: path, ContentType: file.type, Body: file, 'Access-Control-Allow-Credentials': '*', 'ACL': 'public-read' }; //key可以设置为桶的相抵路径，Body为文件， ACL最好要设置
+        bucket.upload(params, function (err, data) {
+            if(err){
+                console.log(err);
+            }else{
+                console.log("Upload succeeded!")
+                $.ajax({
+                    url: "http://18.222.63.99:3000/modifyProfil",
+                    header: "Access-Control-Allow-Origin: *",
+                    type: "POST",
+                    data: formData,
+                    dataType: "json",
+                    success: function (data) {
+                        console.log("Response:" + data);
+                        alert("Votre profile a bien été remis. Vous pouvez postuler une annonce après votre profile soit validé par notre système. ");
+                        window.location.href = "user.html";
+                    }
+                });
             }
         });
+    } else {
+        console.log('Nothing to upload.');
+    }
+        
     }
 
     document.getElementById("monProfile").style.display = "block";

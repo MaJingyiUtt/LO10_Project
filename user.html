@@ -42,6 +42,7 @@
                 <div id='monProfile' class="col-sm-6" style="background-color:LightGray;">
                         <center><h3>Mon profile</h3>
                        <img id='image' height="100" src="" /><br>
+                       <br>
                        <p id='nom'></p>
                          <p id='prenom'></p> 
                          <p id='email'></p>
@@ -72,8 +73,9 @@
                             <img src="" id="portrait" style="width: 200px; display: block;" />        
                             <br>
                             </div>
-                        <a class="btn btn-primary" onclick='enregisterP();'>Enregistrer</a>
-                        <a class="btn btn-primary" onclick='annuler();'>Annuler</a>
+                        <a id="enregistrer" class="btn btn-primary" onclick='enregisterP();'>Enregistrer</a>
+                        <a id="annuler" class="btn btn-primary" onclick='annuler();'>Annuler</a>
+                        <img src="img/ajax-loading-gif-4.gif" id="load" style="width: 200px; display: none;" />
                         <br>
                     </center>
                 </div>

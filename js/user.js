@@ -60,7 +60,7 @@ function setMessage(nounouData) {
     if (nounouData.verified) {
         document.getElementById('message').innerText = "  Votre profile a été validé. Vous pouvez postuler. ";
     } else {
-        document.getElementById('postuler').disabled = true;
+        document.getElementById('postuler').setAttribute("disabled",true);
         if (nounouData.message == null) {
             document.getElementById('message').innerText = "  Nous somme en train d'étudier votre profile. Veuillez patienter. ";
         } else {
@@ -187,11 +187,12 @@ function enregisterP() {
     }
         
     }
+}
 
+function annuler(){
     document.getElementById("monProfile").style.display = "block";
     document.getElementById("modifierProfile").style.display = "none";
 }
-
 
 function checkLogin() {
     var b = true;
@@ -201,29 +202,4 @@ function checkLogin() {
         b = false;
     }
     return b;
-}
-
-function uploadToS3(photoName) {
-    var file = document.getElementById("inputImage").files[0];
-    var credentials = {
-        accessKeyId: accessKeyId,
-        secretAccessKey: secreAccessKey
-    };  //秘钥形式的登录上传
-    AWS.config.update(credentials);
-    AWS.config.region = 'us-east-1';   //设置区域
-
-    // create bucket instance
-    var bucket = new AWS.S3({ params: { Bucket: 'lo10bfm' } });  //选择桶
-    if (file) {
-        var params = { Key: photoName, ContentType: file.type, Body: file, 'Access-Control-Allow-Credentials': '*', 'ACL': 'public-read' }; //key可以设置为桶的相抵路径，Body为文件， ACL最好要设置
-        bucket.upload(params, function (err, data) {
-            if(err){
-                console.log(err);
-            }else{
-                console.log("Upload succeeded!")
-            }
-        });
-    } else {
-        console.log('Nothing to upload.');
-    }
 }

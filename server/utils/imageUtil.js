@@ -24,8 +24,8 @@ const detectFace = function (path,callback){
             }else if (info.length >1){
                 message = "Your Email address is already verified.\n But there are more than one person in your photo"
                 callback(false,message)
-            }else if(info[0].BoundingBox.Width*info[0].BoundingBox.Height<0.1){
-                message = "Your Email address is already verified.\n But your face is not big enough in the photo(>10%)"
+            }else if(info[0].BoundingBox.Width*info[0].BoundingBox.Height<0.08){
+                message = "Your Email address is already verified.\n But your face is not big enough in the photo(<8%)"
                 callback(false,message)
             }else if(info[0].Confidence<0.9){
                 message = "Your Email address is already verified.\n But please choose a photo which is clearer and brighter"

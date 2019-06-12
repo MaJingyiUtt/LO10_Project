@@ -97,12 +97,15 @@ function submitFormData() {
   if (form.sexe.value == "Femme") {
     sexe = "f"
   }
-  else {
+  else if (form.sexe.value == "Homme"){
     sexe = "h"
+  }
+  else {
+    sexe="tous"
   }
 
   var prix
-  if (form.prix_max.value == "Prix max") {
+  if (form.prix_max.value == "60+") {
     prix = 99999
   }
   else {

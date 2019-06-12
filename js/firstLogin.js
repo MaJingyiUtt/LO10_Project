@@ -145,15 +145,6 @@ function submitF() {
         } else {
             console.log('Nothing to upload.');
         }
-
-
-      
-
-
-        //
-
-
-
     }
 }
 

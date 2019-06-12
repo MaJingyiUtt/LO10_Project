@@ -13,7 +13,7 @@ const table = "login"
 router.post('/', function (req, res) {
     console.info("request received")
     const data = req.body
-    var content = 'Bonjour, pour vérifier votre mail, veuillez cliquer ce lien : http://18.222.63.99:3000/verify/' + data.token + "/" + data.userId;
+    var content = 'Bonjour, pour vérifier votre mail, veuillez cliquer ce lien : http://18.222.63.99:3000/verify/' + data.token + "/" + data.userId+" Le résultat sera affiché sur votre profile. "
 
     var client = elasticemail.createClient({
         username: 'ranfang19@gmail.com',

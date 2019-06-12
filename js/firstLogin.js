@@ -136,8 +136,12 @@ function submitF() {
                         dataType: "json",
                         success: function (data) {
                             console.log("Response:" + data);
-                            alert("Votre profile a bien été remis. Nous allons vous envoyer un mail  de vérification. Vous pouvez postuler une annonce après votre profile soit validé par notre système. ");
-                            window.location.href = "user.html";
+                            if(data.role=="p"){
+                                alert("Votre profile a bien été remis. ");
+                            }else{
+                                alert("Votre profile a bien été remis. Vous pouvez postuler une annonce après votre profile soit validé par notre système. ");
+                            }
+                             window.location.href = "user.html";
                         }
                     });
                 }
@@ -145,15 +149,6 @@ function submitF() {
         } else {
             console.log('Nothing to upload.');
         }
-
-
-      
-
-
-        //
-
-
-
     }
 }
 

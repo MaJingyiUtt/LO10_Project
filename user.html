@@ -23,7 +23,6 @@
                 </div>
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="user.html">Mon compte</a></li>
-                    <li><a href="postuler.html">Postuler</a></li>
                     <li><a href="chercher.html">Chercher</a></li>
                 </ul>
                 <div id="signin" style="float:right;" class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
@@ -33,10 +32,11 @@
 
         <div class="container-fluid">
             <div class="row row-no-gutters">
-                    <div class="col-sm-2" style="background-color:lightsalmon">
+                    <div id="nounouInfo" class="col-sm-2" style="background-color:lightsalmon">
                         <center><label>Information</label></center>
                         <h5 id="message"></h5>
                     </div>
+                    <div id="parentEmptyDiv" class="col-sm-2" ></div>
                     <div class="col-sm-1" ></div>
 
                 <div id='monProfile' class="col-sm-6" style="background-color:LightGray;">
@@ -84,11 +84,17 @@
             
             <br>
 
-            <div class="row row-no-gutters">
+            <div id="nounouButton" class="row row-no-gutters">
                 <div class="col-sm-3" ></div>
                 <div class="col-sm-3" style="background-color:lavenderblush;"><center><h3>Postuler </h3></center>
                     <center><a id="postuler" class="btn btn-primary" href="postuler.html">C'est parti &raquo;</a></center><br></div>
                 <div class="col-sm-3" style="background-color:lavender;"><center><h3>Rechercher</h3></center>
+                    <center><a id="rechercher" class="btn btn-info" href="chercher.html">C'est parti &raquo;</a></center><br></div>
+                <div class="col-sm-3"></div>
+            </div>
+            <div id="parentButton" class="row row-no-gutters" style="display: none;">
+                <div class="col-sm-3" ></div>
+                <div class="col-sm-6" style="background-color:lavender;"><center><h3>Rechercher</h3></center>
                     <center><a id="rechercher" class="btn btn-info" href="chercher.html">C'est parti &raquo;</a></center><br></div>
                 <div class="col-sm-3"></div>
             </div>

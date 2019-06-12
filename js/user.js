@@ -53,7 +53,15 @@ function setUserProfile(nounouData) {
     document.getElementById('adresse').innerText = "Adresse : " + nounouData.adresse;
     document.getElementById('portable').innerText = "Portable : " + nounouData.portable;
     document.getElementById('ville').innerText = "Ville : " + nounouData.ville;
-    setMessage(nounouData);
+    if(nounouData.role=="p"){
+        document.getElementById("nounouButton").style.display = "none";
+        document.getElementById("nounouInfo").style.display = "none";
+        document.getElementById("parentEmptyDiv").style.display = "block";
+        document.getElementById("parentButton").style.display = "block";
+
+    }else{
+            setMessage(nounouData);
+    }
 }
 
 function setMessage(nounouData) {
@@ -184,7 +192,11 @@ function enregisterP() {
                     dataType: "json",
                     success: function (data) {
                         console.log("Response:" + data);
-                        alert("Votre profile a bien été remis. Vous pouvez postuler une annonce après votre profile soit validé par notre système. ");
+                        if(data.role=="p"){
+                            alert("Votre profile a bien été remis. ");
+                        }else{
+                            alert("Votre profile a bien été remis. Vous pouvez postuler une annonce après votre profile soit validé par notre système. ");
+                        }
                         window.location.href = "user.html";
                     }
                 });

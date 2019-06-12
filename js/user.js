@@ -115,6 +115,9 @@ function setInputs(nounouData){
 
 
 function enregisterP() {
+    document.getElementById("enregistrer").style.display = "none";
+    document.getElementById("annuler").style.display = "none";
+    document.getElementById("load").style.display = "block";
     if (checkLogin()) {
         var nom = document.getElementById("inputnom").value;
         var prenom = document.getElementById("inputprenom").value;

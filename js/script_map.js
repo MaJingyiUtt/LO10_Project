@@ -137,11 +137,11 @@ function submitFormData() {
     type: "GET",
     dataType: "json",
     success: function (data) {
-      if(!data.resultsData){
+      console.log(data.resultsData);
+      if(data.resultsData.length==0){
         document.getElementById('results').innerHTML = "<div style='background-color:#eeeeee; padding:40px;margin-bottom:30px’><center><h3>Désolé, nous n'avons rien trouvé, veuillez réessayez.</h3></center></div>"
       }
       else{
-        console.log(data.resultsData);
         var results_address = [];
         for (i = 0; i < data.resultsData.length; i++) {
           results_address[i] = data.resultsData[i].adresse

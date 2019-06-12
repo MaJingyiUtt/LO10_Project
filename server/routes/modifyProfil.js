@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const fs = require("fs")
 const Database = require("../utils/database")
-
+const elasticemail = require('elasticemail')
 const db = new Database()
 const table = "login"
 

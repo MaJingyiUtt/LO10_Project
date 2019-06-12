@@ -69,6 +69,8 @@ function showPreview(fileId, imgId) {
  *
  */
 function submitF() {
+    document.getElementById("valider").style.display = "none";
+    document.getElementById("load").style.display = "block";
     if (checkLogin()) {
         var form = document.getElementById("firstForm");
         var nom = form.inputSurname.value;

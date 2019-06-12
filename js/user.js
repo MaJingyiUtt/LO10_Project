@@ -61,6 +61,7 @@ function setMessage(nounouData) {
         document.getElementById('message').innerText = "  Votre profile a été validé. Vous pouvez postuler. ";
     } else {
         document.getElementById('postuler').setAttribute("disabled",true);
+        document.getElementById('postuler').href=" ";
         if (nounouData.message == null) {
             document.getElementById('message').innerText = "  Nous somme en train d'étudier votre profile. Veuillez patienter. ";
         } else {

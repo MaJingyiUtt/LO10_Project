@@ -17,6 +17,7 @@ function onSignIn(googleUser) {
   userFamilyName = profile.getFamilyName();
   userEmail = profile.getEmail();
   console.log(userId);
+  afficherContent();
 }
 
 function logOut() {
@@ -37,6 +38,9 @@ function checkLogin() {
   return b;
 }
 
+function afficherContent(){
+  document.getElementById("form1").style.display = "block";
+}
 
 function createMap() {
   geocoder = new google.maps.Geocoder();
@@ -133,33 +137,37 @@ function submitFormData() {
     type: "GET",
     dataType: "json",
     success: function (data) {
-      console.log(data.resultsData);
-      var results_address = [];
-      for (i = 0; i < data.resultsData.length; i++) {
-        results_address[i] = data.resultsData[i].adresse
+      if(!data.resultsData){
+        document.getElementById('results').innerHTML = "<div style='background-color:#eeeeee; padding:40px;margin-bottom:30px’><center><h3>Désolé, nous n'avons rien trouvé, veuillez réessayez.</h3></center></div>"
       }
-      console.log(results_address)
-      for (i = 0; i < results_address.length; i++) {
-        document.getElementById('results').innerHTML += "<div style='background-color:#eeeeee; padding:40px;margin-bottom:30px'><div class='row'><img class='col-sm-4' src='https://lo10bfm.s3.amazonaws.com/" +data.resultsData[i].photo+"'/><div class='col-sm-8'><h3>" + data.resultsData[i].nom + " " + data.resultsData[i].prenom + "</h3><div style='color: darkorange'><h4>" + data.resultsData[i].prix + " € / heure</h4></div><br/><div><b>Téléphone:  </b>&nbsp&nbsp" + data.resultsData[i].portable + "</div><div><b>Email:  </b>&nbsp&nbsp" + data.resultsData[i].email + "</div><div><b>Adresse:</b>&nbsp&nbsp" + data.resultsData[i].adresse + "</div><div><b>Description:  </b>&nbsp&nbsp" + data.resultsData[i].description + "</div></div></div></div>";
-        currAddress = results_address[i];
-        geocoder.geocode({ 'address': currAddress }, function (results, status) {
-          if (status == google.maps.GeocoderStatus.OK) {
-            marker = new google.maps.Marker({
-              position: results[0].geometry.location,
-              map: map,
-              title: results[0].formatted_address
-            });
-            content = results[0].formatted_address;
-            var infowindow = new google.maps.InfoWindow();
-            google.maps.event.addListener(marker, 'click', (function (marker, content, infowindow) {
-              return function () {
-                infowindow.setContent(content);
-                infowindow.open(map, marker);
-              };
-            })(marker, content, infowindow));
-          }
-        })
-      };
+      else{
+        console.log(data.resultsData);
+        var results_address = [];
+        for (i = 0; i < data.resultsData.length; i++) {
+          results_address[i] = data.resultsData[i].adresse
+        }
+        for (i = 0; i < results_address.length; i++) {
+          document.getElementById('results').innerHTML += "<div style='background-color:#eeeeee; padding:40px;margin-bottom:30px'><div class='row'><img class='col-sm-3' src='https://lo10bfm.s3.amazonaws.com/" +data.resultsData[i].photo+"'/><div class='col-sm-8'><h3>" + data.resultsData[i].nom + " " + data.resultsData[i].prenom + "</h3><div style='color: darkorange'><h4>" + data.resultsData[i].prix + " € / heure</h4></div><br/><div><b>Sexe:  </b>&nbsp&nbsp" + data.resultsData[i].sexe.toUpperCase() + "</div><div><b>Téléphone:  </b>&nbsp&nbsp" + data.resultsData[i].portable + "</div><div><b>Email:  </b>&nbsp&nbsp" + data.resultsData[i].email + "</div><div><b>Adresse:</b>&nbsp&nbsp" + data.resultsData[i].adresse + "</div><div><b>Description:  </b>&nbsp&nbsp" + data.resultsData[i].description + "</div></div></div></div>";
+          currAddress = results_address[i];
+          geocoder.geocode({ 'address': currAddress }, function (results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+              marker = new google.maps.Marker({
+                position: results[0].geometry.location,
+                map: map,
+                title: results[0].formatted_address
+              });
+              content = results[0].formatted_address;
+              var infowindow = new google.maps.InfoWindow();
+              google.maps.event.addListener(marker, 'click', (function (marker, content, infowindow) {
+                return function () {
+                  infowindow.setContent(content);
+                  infowindow.open(map, marker);
+                };
+              })(marker, content, infowindow));
+            }
+          })
+        };
+    }
     }
   });
 }

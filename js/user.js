@@ -4,6 +4,7 @@ var userName;
 var userGivenName;
 var userFamilyName;
 var userEmail;
+var userRole;
 function onSignIn(googleUser) {
     var profile = googleUser.getBasicProfile();
     userId = profile.getId();
@@ -46,6 +47,7 @@ function monProfile() {
 }
 
 function setUserProfile(nounouData) {
+    userRole=nounouData.role;
     document.getElementById('image').src = "https://lo10bfm.s3.amazonaws.com/" + nounouData.photo;
     document.getElementById('nom').innerText = "Nom : " + nounouData.nom;
     document.getElementById('prenom').innerText = "Prénom : " + nounouData.prenom;
@@ -168,6 +170,7 @@ function enregisterP() {
             "ville":ville,
             "email": email,
             "portable": tel,
+            "role": userRole,
             "sexe": sexe,
             "photo": path
         }

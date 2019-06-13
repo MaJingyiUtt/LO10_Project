@@ -138,10 +138,8 @@ function submitFormData() {
     dataType: "json",
     success: function (data) {
       console.log(data.resultsData);
-      console.log(data.resultsData.length);
       if(data.resultsData.length==0){
-        console.log("auchun resultat")
-        document.getElementById('results').innerHTML += "<div style='background-color:#eeeeee; padding:40px;margin-bottom:30px’><h3>Désolé, nous avons rien trouvé, veuillez réessayez.</h3></div>"
+        document.getElementById('results').innerHTML += "<div style='background-color:#eeeeee; padding:40px;margin-bottom:30px'><h3>Désolé, nous avons rien trouvé, veuillez réessayez.</h3></div>"
       }
       else{
         var results_address = [];

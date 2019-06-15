@@ -22,7 +22,9 @@ router.get('/:userId', function (req, res) {
     db.connect()
     db.select(table,"*",sql,function (results){
       console.log(results);
-  
+      results.array.forEach(data => {
+        data.photo = "https://lo10bfm.s3.amazonaws.com/" + data.photo
+      });
       res.send({"nounouData": results});
     })
     db.disconnect()

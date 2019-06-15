@@ -22,7 +22,7 @@ class Database {
         })
         this.connection.connect(function (error) {
             if (error) {
-                console.error(error)
+                console.error(this.count+error)
                 this.count += 1
                 if (this.count <= 3) {
                     setTimeout(() => {
@@ -31,8 +31,9 @@ class Database {
                 }
             }
             else console.info("Connected")
-            this.count = 0
+            
         })
+        this.count = 0
     }
 
     /**

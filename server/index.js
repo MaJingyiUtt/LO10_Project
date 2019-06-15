@@ -1,6 +1,7 @@
 const bodyParser = require('body-parser')
 const express = require('express')
 const app = express()
+const morgan = require('morgan')
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -19,6 +20,9 @@ app.all('*', function(req, res, next) {
     next();
 })
 
+morgan.format('logger', '[log] :method :url :status');
+ 
+app.use(morgan('logger'))
 
 app.use('/', indexRouter)
 app.use('/firstlogin', firstloginRouter)

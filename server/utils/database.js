@@ -20,7 +20,7 @@ class Database {
             database: this.database,
             port: this.port
         })
-        this.connection.connect(function (error) {
+        this.connection.connect( (error) => {
             if (error) {
                 console.error(this.count+error)
                 this.count += 1

@@ -30,10 +30,13 @@ class Database {
                     }, 5000)
                 }
             }
-            else console.info("Connected")
+            else{
+                this.count = 0
+                console.info("Connected")
+            } 
             
         })
-        this.count = 0
+        
     }
 
     /**

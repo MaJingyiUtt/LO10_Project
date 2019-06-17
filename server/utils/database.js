@@ -8,7 +8,8 @@ class Database {
         this.password = '12345678'
         this.database = 'lo10'
         this.port = 3306
-        
+        // Parameter for Idempotent Retry
+        this.count = 0
     }
     //connect to the database
     connect() {
@@ -19,10 +20,23 @@ class Database {
             database: this.database,
             port: this.port
         })
-        this.connection.connect(function (error) {
-            if (error) console.error(error)
-            else console.info("Connected")
+        this.connection.connect( (error) => {
+            if (error) {
+                console.error(this.count+error)
+                this.count += 1
+                if (this.count <= 3) {
+                    setTimeout(() => {
+                        this.connect()
+                    }, 5000)
+                }
+            }
+            else{
+                this.count = 0
+                console.info("Connected")
+            } 
+            
         })
+        
     }
 
     /**
@@ -46,9 +60,9 @@ class Database {
      * @memberof Database
      */
     select(table, columns, sql, callback) {
-        this.connection.query('SELECT ' + columns + ' FROM ' + table +" "+ sql, function (error, results, _fields) {
+        this.connection.query('SELECT ' + columns + ' FROM ' + table + " " + sql, function (error, results, _fields) {
             if (error) console.error(error)
-            else {          
+            else {
                 callback(results)
             }
         })
